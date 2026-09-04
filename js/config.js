@@ -35,7 +35,7 @@ var SITE = {
     id: 'G-K21VVC9407'
   },
   supabase: {
-    url: 'YOUR_SUPABASE_URL',
-    anonKey: 'YOUR_SUPABASE_ANON_KEY'
+    url: 'https://nthnmytzpzgulskewmku.supabase.co',
+    anonKey: 'sb_publishable_8_oArsvXjvcWbrIOnKYd7Q_ntBbZUHx'
   }
 };
