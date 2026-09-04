@@ -162,6 +162,11 @@ const I18N = {
       more: 'اعرف المزيد'
     },
 
+    partners: {
+      eyebrow: 'شركاؤنا',
+      title: 'شركاء نفخر بالتعاون معهم'
+    },
+
     band: {
       title: 'اتصال واحد... خمس خدمات',
       sub: 'من الوجبات إلى التنظيف، ومن النقل إلى التسليم وتشغيل الأيدي العاملة — كل ما تحتاجه عبر مكالمة أو رسالة واحدة.',
@@ -400,6 +405,11 @@ const I18N = {
       title: 'Five Departments, One Complete Solution',
       sub: 'We cover your daily and professional needs with specialized departments and ready teams.',
       more: 'Discover more'
+    },
+
+    partners: {
+      eyebrow: 'Our Partners',
+      title: 'Partners We Are Proud to Work With'
     },
 
     band: {
