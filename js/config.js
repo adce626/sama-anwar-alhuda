@@ -32,6 +32,6 @@ var SITE = {
   },
   analytics: {
     enabled: false,
-    id: 'G-XXXXXXXXXX'
+    id: 'G-K21VVC9407'
   }
 };

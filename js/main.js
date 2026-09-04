@@ -33,7 +33,7 @@ function trackEvent(eventName, params) {
 function trackConversion(conversionType, value) {
   if (typeof gtag === 'function') {
     gtag('event', 'conversion', {
-      'send_to': 'G-XXXXXXXXXX/CONVERSION_ID',
+      'send_to': 'G-K21VVC9407/CONVERSION_ID',
       'value': value || 1,
       'currency': 'IQD',
       'transaction_id': ''
