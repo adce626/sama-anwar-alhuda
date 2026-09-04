@@ -33,5 +33,9 @@ var SITE = {
   analytics: {
     enabled: false,
     id: 'G-K21VVC9407'
+  },
+  supabase: {
+    url: 'YOUR_SUPABASE_URL',
+    anonKey: 'YOUR_SUPABASE_ANON_KEY'
   }
 };

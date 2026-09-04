@@ -198,6 +198,56 @@
       </div>
     </section>
 
+    <!-- SERVICE REQUEST FORM -->
+    <section class="section" style="background:var(--bg)">
+      <div class="container" style="max-width:700px">
+        <div class="section-head center reveal">
+          <span class="eyebrow" data-i18n="serviceForm.eyebrow"></span>
+          <h2 class="section-title" data-i18n="serviceForm.title"></h2>
+          <p class="section-sub" data-i18n="serviceForm.sub"></p>
+        </div>
+        <form id="serviceRequestForm" class="service-form reveal">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName"><i class="fas fa-user"></i> <span data-i18n="serviceForm.name"></span></label>
+              <input type="text" id="fullName" name="full_name" required placeholder="" data-i18n-placeholder="serviceForm.namePh">
+            </div>
+            <div class="form-group">
+              <label for="phone"><i class="fas fa-phone"></i> <span data-i18n="serviceForm.phone"></span></label>
+              <input type="tel" id="phone" name="phone" required dir="ltr" placeholder="0771 855 9456">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="serviceType"><i class="fas fa-concierge-bell"></i> <span data-i18n="serviceForm.service"></span></label>
+            <select id="serviceType" name="service_type" required>
+              <option value="" data-i18n="serviceForm.servicePh"></option>
+              <option value="cleaning" data-i18n="serviceForm.opt1"></option>
+              <option value="catering" data-i18n="serviceForm.opt2"></option>
+              <option value="transport" data-i18n="serviceForm.opt3"></option>
+              <option value="delivery" data-i18n="serviceForm.opt4"></option>
+              <option value="workforce" data-i18n="serviceForm.opt5"></option>
+              <option value="advertising" data-i18n="serviceForm.opt6"></option>
+              <option value="hospitality" data-i18n="serviceForm.opt7"></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message"><i class="fas fa-comment"></i> <span data-i18n="serviceForm.message"></span></label>
+            <textarea id="message" name="message" rows="4" placeholder="" data-i18n-placeholder="serviceForm.messagePh"></textarea>
+          </div>
+          <button type="submit" class="btn btn-red btn-lg" style="width:100%" id="submitBtn">
+            <i class="fas fa-paper-plane"></i> <span data-i18n="serviceForm.submit"></span>
+          </button>
+          <div id="formSuccess" class="form-alert success" style="display:none">
+            <i class="fas fa-check-circle"></i> <span data-i18n="serviceForm.success"></span>
+          </div>
+          <div id="formError" class="form-alert error" style="display:none">
+            <i class="fas fa-exclamation-triangle"></i> <span data-i18n="serviceForm.error"></span>
+            <a href="https://wa.me/9647718559456?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%2C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%AA%D9%82%D8%AF%D9%8A%D9%85%20%D8%AE%D8%AF%D9%85%D8%A9" target="_blank" rel="noopener" class="btn btn-whatsapp-sm"><i class="fab fa-whatsapp"></i> <span data-i18n="serviceForm.whatsappFallback"></span></a>
+          </div>
+        </form>
+      </div>
+    </section>
+
     <section class="section neutral">
       <div class="container">
         <div class="map-wrap reveal">
@@ -235,6 +285,7 @@
   <script src="js/translations.js?v=3"></script>
   <script src="js/components.js?v=3"></script>
   <script src="js/main.js?v=3"></script>
+  <script src="js/service-form.js?v=3"></script>
   <script src="js/pwa.js?v=3"></script>
 </body>
 </html>

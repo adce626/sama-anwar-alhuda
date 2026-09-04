@@ -167,6 +167,31 @@ const I18N = {
       title: 'شركاء نفخر بالتعاون معهم'
     },
 
+    serviceForm: {
+      eyebrow: 'طلب خدمة',
+      title: 'أرسل طلبك الآن',
+      sub: 'اختر الخدمة التي تحتاجها وسن التواصل معك في أقرب وقت',
+      name: 'الاسم الكامل',
+      namePh: 'أدخل اسمك الكامل',
+      phone: 'رقم الهاتف',
+      service: 'نوع الخدمة',
+      servicePh: 'اختر نوع الخدمة',
+      opt1: 'تنظيف',
+      opt2: 'تغذية',
+      opt3: 'نقل عام',
+      opt4: 'توصيل سريع',
+      opt5: 'تشغيل أيدي عاملة',
+      opt6: 'إعلان وترويج',
+      opt7: 'خدمات فندقية',
+      message: 'تفاصيل إضافية',
+      messagePh: 'اكتب تفاصيل طلبك هنا...',
+      submit: 'إرسال الطلب',
+      submitting: 'جارٍ الإرسال...',
+      success: 'تم إرسال طلبك بنجاح! سن التواصل معك قريباً.',
+      error: 'حدث خطأ أثناء الإرسال. يمكنك التواصل عبر واتساب:',
+      whatsappFallback: 'تواصل عبر واتساب'
+    },
+
     band: {
       title: 'اتصال واحد... خمس خدمات',
       sub: 'من الوجبات إلى التنظيف، ومن النقل إلى التسليم وتشغيل الأيدي العاملة — كل ما تحتاجه عبر مكالمة أو رسالة واحدة.',
@@ -410,6 +435,31 @@ const I18N = {
     partners: {
       eyebrow: 'Our Partners',
       title: 'Partners We Are Proud to Work With'
+    },
+
+    serviceForm: {
+      eyebrow: 'Service Request',
+      title: 'Send Your Request Now',
+      sub: 'Choose the service you need and we will contact you as soon as possible',
+      name: 'Full Name',
+      namePh: 'Enter your full name',
+      phone: 'Phone Number',
+      service: 'Service Type',
+      servicePh: 'Choose a service',
+      opt1: 'Cleaning',
+      opt2: 'Catering',
+      opt3: 'General Transport',
+      opt4: 'Express Delivery',
+      opt5: 'Workforce Staffing',
+      opt6: 'Advertising & Promotion',
+      opt7: 'Hospitality Services',
+      message: 'Additional Details',
+      messagePh: 'Write your request details here...',
+      submit: 'Submit Request',
+      submitting: 'Submitting...',
+      success: 'Your request has been sent successfully! We will contact you soon.',
+      error: 'An error occurred while sending. You can contact us via WhatsApp:',
+      whatsappFallback: 'Contact via WhatsApp'
     },
 
     band: {
