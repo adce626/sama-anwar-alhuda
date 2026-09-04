@@ -161,7 +161,7 @@ var PWA = {
       '    <img src="/assets/logo/logo.jpg" width="40" height="40" style="border-radius:10px;" alt="">' +
       '    <div>' +
       '      <b style="color:#fff;font-size:0.95rem;display:block;">تثبيت تطبيق سما انوار الهدى</b>' +
-      '      <small style="color:rgba(255,255,255,0.6);font-size:0.8rem;">user للوصول السريع بدون إنترنت</small>' +
+      '      <small style="color:rgba(255,255,255,0.6);font-size:0.8rem;">للوصول السريع بدون إنترنت</small>' +
       '    </div>' +
       '  </div>' +
       '  <div style="display:flex;gap:10px;">' +
