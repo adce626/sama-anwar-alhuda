@@ -53,6 +53,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  <style>
+    /* Critical CSS - above the fold */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Cairo','Inter',system-ui,sans-serif;background:#fff;color:#111;line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    html[lang="en"] body{font-family:'Inter','Cairo',system-ui,sans-serif}
+    .preloader{position:fixed;inset:0;display:grid;place-items:center;background:#fff;z-index:2100;transition:opacity .5s ease,visibility .5s ease}
+    .preloader.hidden{opacity:0;visibility:hidden}
+    .preloader-inner{text-align:center;display:flex;flex-direction:column;align-items:center}
+    .preloader-inner img{display:block;width:96px;height:96px;object-fit:contain;margin:0 auto 18px;border-radius:18px;background:#fff;padding:6px;box-shadow:0 14px 34px rgba(17,17,17,.13);animation:preloadPulse 1.4s ease-in-out infinite}
+    @keyframes preloadPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+    .preloader-bar{width:150px;height:4px;background:#f5f3f1;border-radius:4px;margin:0 auto 14px;overflow:hidden}
+    .preloader-bar span{display:block;height:100%;width:40%;background:#c21e2c;border-radius:4px;animation:preloadSlide 1s ease-in-out infinite}
+    @keyframes preloadSlide{0%{transform:translateX(-120%)}100%{transform:translateX(300%)}}
+    .preloader-text{color:#55544f;font-size:.92rem}
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:900;padding:10px 0}
+    .container{width:min(1180px,92%);margin-inline:auto}
+    .hero{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;padding:150px 0 90px;background:#111;border-bottom:4px solid #c21e2c}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.preloader{display:none}}
+  </style>
   <link rel="stylesheet" href="css/style.css?v=3">
 
   <!-- Schema.org Structured Data for Service -->
@@ -96,6 +116,19 @@
     }
   }
   </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://samaanwaralhuda.com/"},
+      {"@type": "ListItem", "position": 2, "name": "خدماتنا", "item": "https://samaanwaralhuda.com/#services"},
+      {"@type": "ListItem", "position": 3, "name": "التغذية", "item": "https://samaanwaralhuda.com/catering.html"}
+    ]
+  }
+  </script>
 </head>
 <body data-page="catering" data-theme="light">
 
@@ -105,7 +138,7 @@
 
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
-      <img src="assets/logo/logo.jpg" width="72" height="72" alt="">
+      <img src="assets/logo/logo.jpg" width="72" height="72" alt="سما انوار الهدى">
       <div class="preloader-bar"><span></span></div>
       <p class="preloader-text" data-i18n="preloader"></p>
     </div>
@@ -113,7 +146,7 @@
 
   <header class="navbar" id="navbar"><div id="site-header"></div></header>
 
-  <main>
+  <main role="main">
     <section class="page-hero">
       <div class="container">
         <span class="crumb">
