@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home Page -->
+  <url>
+    <loc>https://samaanwaralhuda.com/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/logo/logo.jpg</image:loc>
+      <image:title>شركة سما انوار الهدى - خدمات عامة في كربلاء</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://samaanwaralhuda.com/about.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/about.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/about.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/about.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/logo/logo.jpg</image:loc>
+      <image:title>من نحن - شركة سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <!-- Contact Page -->
+  <url>
+    <loc>https://samaanwaralhuda.com/contact.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/contact.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/contact.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/contact.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/logo/logo.jpg</image:loc>
+      <image:title>تواصل معنا - شركة سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <!-- Catering Service -->
+  <url>
+    <loc>https://samaanwaralhuda.com/catering.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/catering.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/catering.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/catering.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/illustrations/catering.svg</image:loc>
+      <image:title>خدمات التغذية - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <!-- Cleaning Service -->
+  <url>
+    <loc>https://samaanwaralhuda.com/cleaning.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/cleaning.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/cleaning.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/cleaning.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/illustrations/cleaning.svg</image:loc>
+      <image:title>خدمات التنظيف - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <!-- Transport Service -->
+  <url>
+    <loc>https://samaanwaralhuda.com/transport.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/transport.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/transport.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/transport.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/illustrations/transport.svg</image:loc>
+      <image:title>خدمات النقل العام - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <!-- Delivery Service -->
+  <url>
+    <loc>https://samaanwaralhuda.com/delivery.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/delivery.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/delivery.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/delivery.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/illustrations/delivery.svg</image:loc>
+      <image:title>خدمة التوصيل السريع - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <!-- Workforce Service -->
+  <url>
+    <loc>https://samaanwaralhuda.com/workforce.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://samaanwaralhuda.com/workforce.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://samaanwaralhuda.com/workforce.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://samaanwaralhuda.com/workforce.html" />
+    <image:image>
+      <image:loc>https://samaanwaralhuda.com/assets/illustrations/workforce.svg</image:loc>
+      <image:title>تشغيل الأيدي العاملة - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+</urlset>

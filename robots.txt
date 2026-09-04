@@ -1,0 +1,25 @@
+# robots.txt — سما انوار الهدى | Sama Anwar Al-Huda
+User-agent: *
+Allow: /
+
+# Disallow non-content paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /*.json$
+
+# Allow all crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# Sitemap location
+Sitemap: https://samaanwaralhuda.com/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1

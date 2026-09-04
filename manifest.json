@@ -1,0 +1,63 @@
+{
+  "name": "شركة سما انوار الهدى — للخدمات العامة في كربلاء",
+  "short_name": "سما انوار الهدى",
+  "description": "شركة للخدمات العامة في كربلاء، العراق — التغذية، التنظيف، النقل، التوصيل، الأيدي العاملة.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#111111",
+  "theme_color": "#c21e2c",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["business", "services"],
+  "icons": [
+    {
+      "src": "assets/logo/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/logo/screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "صفحة الرئيسية"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الرئيسية",
+      "short_name": "الرئيسية",
+      "url": "/index.html",
+      "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "التنظيف",
+      "short_name": "التنظيف",
+      "url": "/cleaning.html",
+      "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "التغذية",
+      "short_name": "التغذية",
+      "url": "/catering.html",
+      "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "تواصل معنا",
+      "short_name": "تواصل",
+      "url": "/contact.html",
+      "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
+    }
+  ]
+}
