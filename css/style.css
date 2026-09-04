@@ -567,6 +567,25 @@ body[data-page="index"] .navbar:not(.scrolled) .hamburger span { background: #f5
   .navbar .nav-cta { display: none; }
 }
 
+/* ---------- Gallery ---------- */
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.gallery-item {
+  position: relative; border-radius: 18px; overflow: hidden;
+  box-shadow: var(--shadow-md); transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.gallery-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+.gallery-item img { width: 100%; height: 320px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  padding: 24px 20px 16px; opacity: 0; transition: opacity 0.3s ease;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay span { color: #fff; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+.gallery-overlay i { color: var(--color-red); }
+@media (max-width: 640px) { .gallery-grid { grid-template-columns: 1fr; } .gallery-item img { height: 240px; } }
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }

@@ -129,14 +129,14 @@ const I18N = {
         title: 'تشغيل الأيدي العاملة',
         titleEn: 'Workforce & Manpower Staffing',
         short: 'توفير وإدارة الأيدي العاملة للمشاريع والشركات.',
-        hero: 'وفّرنا لك قوة عاملة جاهزة ومدربة باحتراف للمشاريع والشركات والمؤسسات، من عمال عامين وفرق تنظيف وطواقم تموين إلى عمال فنيين متخصصين. نختار المرشحين بدقة ونطابق مهاراتهم مع طبيعة عملك، ونتولى التنظيم والإشراف على الحضور والأداء يومياً. عقود مرنة من عامل ليوم واحد إلى فرق كاملة لمشاريع طويلة، مع تقارير واضحة تمنحك راحة البال في كل مرحلة.',
-        desc1: 'يتولى قسم تشغيل الأيدي العاملة توفير العمالة الماهرة وإدارتها للمشاريع والشركات والمؤسسات. نوفر عمالاً عامين وفرق تنظيف وطواقم تموين ومقدمي خدمة وعمالاً فنيين لتغطية حاجتك بشكل دائم أو مؤقت، مع اختيار دقيق للمرشحين ومطابقتهم للمتطلبات الفعلية لكل وظيفة.',
-        desc2: 'بعد أن يكون الفريق في مكانه لا نختفي — يشرف المنسقون على الحضور اليومي والأداء ويضمنون بقاء جودة العمل في المستوى الذي تتوقعه. نتولى تنظيم الجداول والتنسيق، فتحصل على قوة عاملة جاهزة ومنظمة وحاضرة وملتزمة ومحترفة.',
-        desc3: 'العقود مرنة، من عامل واحد ليوم واحد إلى فرق كاملة لمشاريع طويلة، وتُراجع المتطلبات معك قبل كل اتفاق. أنت تركز على أعمالك الأساسية ونحن نتكفل بالتوظيف والتجهيز والإشراف، مع تقارير أداء واضحة تضمن لك راحة البال في كل مرحلة من المشروع.',
-        p1: 'توفير عمالة عامة وماهرة',
-        p2: 'إدارة وتنسيق الفرق',
-        p3: 'ترتيبات مرنة حسب الحاجة',
-        p4: 'إشراف ومتابعة ميدانية'
+        hero: 'أن شركة سما انوار الهدى للتوظيف تعد واحدة من أهم الشركات التي توجد في العراق، وخاصة لدى الشباب حديثي التخرج والغير خريجين وأصحاب الحرف الذين يبحثون عن فرص عمل مناسبة لهم.',
+        desc1: 'أن شركة سما انوار الهدى للتوظيف تعد واحدة من أهم الشركات التي توجد في العراق، وخاصة لدى الشباب حديثي التخرج والغير خريجين وأصحاب الحرف الذين يبحثون عن فرص عمل مناسبة لهم، يوجد في كربلاء العديد من المكاتب والشركات المتخصصة في ذلك الأمر.',
+        desc2: 'هدفهم الأساسي أن يقوموا بتوفير أكبر عدد من الوظائف في مجالات عديدة ومتنوعة لي يستطيع الباحث عن وظيفة أن يجد ضلته، لذلك إذا كنت تبحث عن فرصة عمل وأنت في العراق عليك أن تتجه لشركة سما انوار الهدى للقضاء على البطالة من أجل عراق أجمل.',
+        desc3: 'نلتزم بتوفير فرص عمل حقيقية ومتنوعة تشمل جميع القطاعات، من العمالة العامة إلى الكوادر المتخصصة، مع متابعة مستمرة لضمان رضا الباحثين عن العمل وأصحاب العمل على حد سواء.',
+        p1: 'توفير فرص عمل في مجالات عديدة ومتنوعة',
+        p2: 'خدمة الشباب حديثي التخرج وغير الخريجين',
+        p3: 'توفير أصحاب الحرف والخبرات المختلفة',
+        p4: 'القضاء على البطالة من أجل عراق أجمل'
       }
     },
 
@@ -369,14 +369,14 @@ const I18N = {
         title: 'Workforce & Manpower Staffing',
         titleEn: 'تشغيل الأيدي العاملة',
         short: 'Supplying and managing labor for projects and businesses.',
-        hero: 'We supply you with ready, professionally managed manpower for projects, companies, and institutions — from general workers, cleaning teams, and catering staff to specialized technical workers. We select candidates carefully and match their skills to your work, then handle scheduling and daily supervision of attendance and performance. Flexible contracts from a single worker for a day to full teams for long projects, with clear reporting that gives you peace of mind at every stage.',
-        desc1: 'Our workforce department supplies and manages skilled labor for projects, companies, and institutions. We provide general workers, cleaning teams, catering staff, service staff, and technical workers to cover your needs permanently or temporarily, with candidates selected carefully and matched to the actual requirements of each job.',
-        desc2: 'Once a team is in place, we do not disappear — supervisors follow up on daily attendance and performance, and we check that work quality stays at the level you expect. We handle scheduling and coordination, so you receive ready, organized manpower that is present, punctual, and professional.',
-        desc3: 'Contracts are flexible, from single workers for a day to full teams for long projects, and requirements are reviewed together with you before every agreement. You only focus on your core business while we take care of recruitment, preparation, and supervision, with clear performance reporting for peace of mind at every stage.',
-        p1: 'General and skilled labor supply',
-        p2: 'Team management and coordination',
-        p3: 'Flexible arrangements as needed',
-        p4: 'Field supervision and follow-up'
+        hero: 'Sama Anwar Al-Huda Recruitment Company is one of the most important companies that exist in Iraq, especially for young graduates, non-graduates, and craftsmen who are looking for suitable job opportunities.',
+        desc1: 'Sama Anwar Al-Huda Recruitment Company is one of the most important companies that exist in Iraq, especially for young graduates, non-graduates, and craftsmen who are looking for suitable job opportunities for them. In Karbala, there are many offices, companies, and companies specialized in this matter.',
+        desc2: 'Their primary goal is to provide the largest number of jobs in many and varied fields so that the job seeker can find what he is looking for. Therefore, if you are looking for a job opportunity while you are in Iraq, you should turn to Sama Anwar Al-Huda Company to eliminate unemployment for the sake of a more beautiful Iraq.',
+        desc3: 'We are committed to providing real and diverse job opportunities across all sectors, from general labor to specialized cadres, with continuous follow-up to ensure the satisfaction of job seekers and employers alike.',
+        p1: 'Providing job opportunities in many diverse fields',
+        p2: 'Serving young graduates and non-graduates',
+        p3: 'Providing craftsmen with various skills',
+        p4: 'Eliminating unemployment for a more beautiful Iraq'
       }
     },
 
