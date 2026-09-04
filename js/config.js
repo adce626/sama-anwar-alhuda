@@ -7,7 +7,7 @@ var SITE = {
     display: '0771 855 9456',
     whatsapp: 'https://wa.me/9647718559456'
   },
-  email: 'ghufran.saeid.10@gmail.com',
+  email: 'ainwaralhudaa1@gmail.com',
   social: {
     facebook: 'https://www.facebook.com/profile.php?id=100088385416035',
     instagram: 'https://www.instagram.com/ainwar.alhuda',
