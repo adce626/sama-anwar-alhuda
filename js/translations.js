@@ -12,6 +12,7 @@ const I18N = {
       home: 'الرئيسية',
       about: 'من نحن',
       services: 'خدماتنا',
+      jobs: 'الوظائف',
       contact: 'تواصل معنا',
       call: 'اتصل الآن'
     },
@@ -200,6 +201,16 @@ const I18N = {
       title: 'شركاء نفخر بالتعاون معهم'
     },
 
+    jobs: {
+      crumb: 'الوظائف المتاحة',
+      eyebrow: 'وظائف متاحة',
+      title: 'الوظائف المتاحة',
+      sub: 'تصفح الفرص الوظيفية المتوفرة حالياً في شركة سما انوار الهدى وانضم لفريقنا',
+      loading: 'جارٍ تحميل الوظائف...',
+      emptyTitle: 'لا توجد وظائف متاحة حالياً',
+      emptyDesc: 'تابعنا للجديد — سيتم نشر أي وظائف متاحة قريباً إن شاء الله'
+    },
+
     serviceForm: {
       eyebrow: 'طلب خدمة',
       title: 'أرسل طلبك الآن',
@@ -315,6 +326,7 @@ const I18N = {
       home: 'Home',
       about: 'About',
       services: 'Services',
+      jobs: 'Jobs',
       contact: 'Contact',
       call: 'Call Now'
     },
@@ -501,6 +513,16 @@ const I18N = {
     partners: {
       eyebrow: 'Our Partners',
       title: 'Partners We Are Proud to Work With'
+    },
+
+    jobs: {
+      crumb: 'Available Jobs',
+      eyebrow: 'Available Jobs',
+      title: 'Available Jobs',
+      sub: 'Browse current job opportunities at Sama Anwar Al-Huda and join our team',
+      loading: 'Loading jobs...',
+      emptyTitle: 'No jobs available at the moment',
+      emptyDesc: 'Stay tuned for new opportunities — any available positions will be posted soon'
     },
 
     serviceForm: {
