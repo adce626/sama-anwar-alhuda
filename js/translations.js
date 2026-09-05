@@ -208,7 +208,23 @@ const I18N = {
       sub: 'تصفح الفرص الوظيفية المتوفرة حالياً في شركة سما انوار الهدى وانضم لفريقنا',
       loading: 'جارٍ تحميل الوظائف...',
       emptyTitle: 'لا توجد وظائف متاحة حالياً',
-      emptyDesc: 'تابعنا للجديد — سيتم نشر أي وظائف متاحة قريباً إن شاء الله'
+      emptyDesc: 'تابعنا للجديد — سيتم نشر أي وظائف متاحة قريباً إن شاء الله',
+      searchPh: 'ابحث بالعنوان أو الوصف أو الموقع...',
+      filterAll: 'الكل',
+      detailCrumb: 'تفاصيل الوظيفة',
+      detailEyebrow: 'الوظيفة',
+      notFound: 'الوظيفة غير موجودة أو تم إغلاقها',
+      backToJobs: 'العودة للوظائف',
+      share: 'مشاركة:',
+      applyNow: 'قدم الآن',
+      applyTitle: 'تقديم على الوظيفة',
+      applyName: 'الاسم الكامل',
+      applyPhone: 'رقم الهاتف',
+      applyId: 'صورة بطاقة الهوية',
+      applyIdPh: 'اضغط لرفع صورة البطاقة',
+      applySubmit: 'إرسال الطلب',
+      applySuccess: 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً.',
+      applyError: 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.'
     },
 
     serviceForm: {
@@ -522,7 +538,23 @@ const I18N = {
       sub: 'Browse current job opportunities at Sama Anwar Al-Huda and join our team',
       loading: 'Loading jobs...',
       emptyTitle: 'No jobs available at the moment',
-      emptyDesc: 'Stay tuned for new opportunities — any available positions will be posted soon'
+      emptyDesc: 'Stay tuned for new opportunities — any available positions will be posted soon',
+      searchPh: 'Search by title, description or location...',
+      filterAll: 'All',
+      detailCrumb: 'Job Details',
+      detailEyebrow: 'Job',
+      notFound: 'Job not found or has been closed',
+      backToJobs: 'Back to Jobs',
+      share: 'Share:',
+      applyNow: 'Apply Now',
+      applyTitle: 'Apply for this Job',
+      applyName: 'Full Name',
+      applyPhone: 'Phone Number',
+      applyId: 'ID Card Image',
+      applyIdPh: 'Click to upload ID image',
+      applySubmit: 'Submit Application',
+      applySuccess: 'Your application has been submitted! We will contact you soon.',
+      applyError: 'An error occurred. Please try again.'
     },
 
     serviceForm: {
