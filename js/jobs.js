@@ -107,7 +107,6 @@
         }
       }
     }
-    // Close share menus on outside click
     if (!e.target.closest('.job-share-btn') && !e.target.closest('.share-menu')) {
       document.querySelectorAll('.share-menu.show').forEach(function(m) { m.classList.remove('show'); });
     }
@@ -153,25 +152,68 @@
     if (e.target === applyModal) closeApplyModal();
   });
 
-  // File upload preview
-  var fileUpload = document.getElementById('fileUpload');
-  var fileInput = document.getElementById('applyIdImage');
-  var fileLabel = document.getElementById('fileUploadLabel');
-  var filePreview = document.getElementById('filePreview');
+  // File upload preview — front
+  var fileUploadFront = document.getElementById('fileUploadFront');
+  var fileInputFront = document.getElementById('applyIdImageFront');
+  var fileLabelFront = document.getElementById('fileUploadLabelFront');
+  var filePreviewFront = document.getElementById('filePreviewFront');
 
-  if (fileUpload && fileInput) {
-    fileUpload.addEventListener('click', function() { fileInput.click(); });
-    fileInput.addEventListener('change', function() {
+  if (fileUploadFront && fileInputFront) {
+    fileUploadFront.addEventListener('click', function() { fileInputFront.click(); });
+    fileInputFront.addEventListener('change', function() {
       if (this.files && this.files[0]) {
         var reader = new FileReader();
         reader.onload = function(e) {
-          filePreview.src = e.target.result;
-          filePreview.style.display = 'block';
-          fileLabel.style.display = 'none';
+          filePreviewFront.src = e.target.result;
+          filePreviewFront.style.display = 'block';
+          fileLabelFront.style.display = 'none';
         };
         reader.readAsDataURL(this.files[0]);
       }
     });
+  }
+
+  // File upload preview — back
+  var fileUploadBack = document.getElementById('fileUploadBack');
+  var fileInputBack = document.getElementById('applyIdImageBack');
+  var fileLabelBack = document.getElementById('fileUploadLabelBack');
+  var filePreviewBack = document.getElementById('filePreviewBack');
+
+  if (fileUploadBack && fileInputBack) {
+    fileUploadBack.addEventListener('click', function() { fileInputBack.click(); });
+    fileInputBack.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          filePreviewBack.src = e.target.result;
+          filePreviewBack.style.display = 'block';
+          fileLabelBack.style.display = 'none';
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+  }
+
+  // Helper: upload file to storage
+  async function uploadFile(file, bucket, supaUrl, supaKey) {
+    var fileExt = file.name.split('.').pop();
+    var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
+    var formData = new FormData();
+    formData.append('file', file);
+
+    var uploadRes = await fetch(supaUrl + '/storage/v1/object/' + bucket + '/' + fileName, {
+      method: 'POST',
+      headers: { 'apikey': supaKey, 'Authorization': 'Bearer ' + supaKey },
+      body: formData
+    });
+
+    if (uploadRes.ok) {
+      return supaUrl + '/storage/v1/object/public/' + bucket + '/' + fileName;
+    } else {
+      var err = await uploadRes.json();
+      console.error('[Apply] Upload failed:', err);
+      throw new Error('فشل رفع الصورة: ' + (err.message || 'خطأ غير معروف'));
+    }
   }
 
   // Submit application
@@ -193,38 +235,30 @@
         var key = SITE.supabase.anonKey;
         if (!url || !key || url === 'YOUR_SUPABASE_URL') throw new Error('Supabase not configured');
 
-        // رفع الصورة إذا موجودة
-        var imageUrl = '';
-        var fileInput = document.getElementById('applyIdImage');
-        if (fileInput && fileInput.files && fileInput.files[0]) {
-          var file = fileInput.files[0];
-          var fileExt = file.name.split('.').pop();
-          var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
-          var formData = new FormData();
-          formData.append('file', file);
+        // رفع الصور
+        var imageUrlFront = '';
+        var imageUrlBack = '';
 
-          console.log('[Apply] Uploading ID image to id-documents...');
-          var uploadRes = await fetch(url + '/storage/v1/object/id-documents/' + fileName, {
-            method: 'POST',
-            headers: { 'apikey': key, 'Authorization': 'Bearer ' + key },
-            body: formData
-          });
+        var fiFront = document.getElementById('applyIdImageFront');
+        if (fiFront && fiFront.files && fiFront.files[0]) {
+          console.log('[Apply] Uploading front ID...');
+          imageUrlFront = await uploadFile(fiFront.files[0], 'id-documents', url, key);
+          console.log('[Apply] Front uploaded:', imageUrlFront);
+        }
 
-          if (uploadRes.ok) {
-            imageUrl = url + '/storage/v1/object/public/id-documents/' + fileName;
-            console.log('[Apply] Upload success:', imageUrl);
-          } else {
-            var uploadErr = await uploadRes.json();
-            console.error('[Apply] Upload failed:', uploadErr);
-            throw new Error('فشل رفع صورة الهوية: ' + (uploadErr.message || 'خطأ غير معروف'));
-          }
+        var fiBack = document.getElementById('applyIdImageBack');
+        if (fiBack && fiBack.files && fiBack.files[0]) {
+          console.log('[Apply] Uploading back ID...');
+          imageUrlBack = await uploadFile(fiBack.files[0], 'id-documents', url, key);
+          console.log('[Apply] Back uploaded:', imageUrlBack);
         }
 
         var appData = {
           job_id: document.getElementById('applyJobId').value,
           full_name: document.getElementById('applyFullName').value.trim(),
           phone: document.getElementById('applyPhone').value.trim(),
-          id_image_url: imageUrl || null,
+          id_image_url: imageUrlFront || null,
+          id_image_back_url: imageUrlBack || null,
           source: 'online'
         };
 
@@ -249,8 +283,10 @@
         console.log('[Apply] Done!');
         successEl.style.display = 'flex';
         applyForm.reset();
-        filePreview.style.display = 'none';
-        fileLabel.style.display = '';
+        filePreviewFront.style.display = 'none';
+        fileLabelFront.style.display = '';
+        filePreviewBack.style.display = 'none';
+        fileLabelBack.style.display = '';
       } catch (err) {
         console.error('[Apply] Error:', err);
         errorEl.querySelector('span').textContent = err.message || 'حدث خطأ أثناء الإرسال';
@@ -285,7 +321,7 @@
       }
 
       allJobs = await response.json();
-      console.log('[Jobs] Found:', allJobs.length, allJobs);
+      console.log('[Jobs] Found:', allJobs.length);
       loadingEl.style.display = 'none';
 
       if (!allJobs || allJobs.length === 0) {

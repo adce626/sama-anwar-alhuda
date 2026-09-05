@@ -81,7 +81,6 @@
         (type ? '<span class="job-meta-item"><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
         '<span class="job-meta-item"><i class="fas fa-calendar-alt"></i> ' + formatDate(job.created_at) + '</span>';
 
-      // If job is closed, hide apply button and show notice
       var applySection = document.querySelector('.job-apply-section');
       if (!isOpen && applySection) {
         applySection.innerHTML = '<div class="closed-notice"><i class="fas fa-info-circle"></i> ' + (lang === 'ar' ? 'هذه الوظيفة مغلقة حالياً — يمكنك تصفح الوظائف الأخرى' : 'This job is currently closed — browse other available positions') + '</div>';
@@ -91,7 +90,6 @@
         (job.requirements ? '<div class="job-detail-req"><h3>' + (lang === 'ar' ? 'المتطلبات' : 'Requirements') + '</h3><p>' + job.requirements + '</p></div>' : '') +
         (job.benefits ? '<div class="job-detail-benefits"><h3>' + (lang === 'ar' ? 'المميزات' : 'Benefits') + '</h3><p>' + job.benefits + '</p></div>' : '');
 
-      // Share buttons
       var pageUrl = window.location.href;
       var shareText = lang === 'ar' ? 'شوف هذي الوظيفة: ' + job.title : 'Check this job: ' + job.title;
       shareBtns.innerHTML =
@@ -99,7 +97,6 @@
         '<a href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(pageUrl) + '" target="_blank" class="share-link share-fb"><i class="fab fa-facebook-f"></i> Facebook</a>' +
         '<a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(pageUrl) + '" target="_blank" class="share-link share-tw"><i class="fab fa-x-twitter"></i> X</a>';
 
-      // Apply button — open modal directly on this page
       applyBtn.addEventListener('click', function(e) {
         e.preventDefault();
         if (applyModal) {
@@ -110,7 +107,6 @@
         }
       });
 
-      // Close modal
       var modalClose = document.getElementById('modalClose');
       if (modalClose) {
         modalClose.addEventListener('click', function() {
@@ -127,25 +123,68 @@
         });
       }
 
-      // File upload preview
-      var fileUpload = document.getElementById('fileUpload');
-      var fileInput = document.getElementById('applyIdImage');
-      var fileLabel = document.getElementById('fileUploadLabel');
-      var filePreview = document.getElementById('filePreview');
+      // File upload preview — front
+      var fileUploadFront = document.getElementById('fileUploadFront');
+      var fileInputFront = document.getElementById('applyIdImageFront');
+      var fileLabelFront = document.getElementById('fileUploadLabelFront');
+      var filePreviewFront = document.getElementById('filePreviewFront');
 
-      if (fileUpload && fileInput) {
-        fileUpload.addEventListener('click', function() { fileInput.click(); });
-        fileInput.addEventListener('change', function() {
+      if (fileUploadFront && fileInputFront) {
+        fileUploadFront.addEventListener('click', function() { fileInputFront.click(); });
+        fileInputFront.addEventListener('change', function() {
           if (this.files && this.files[0]) {
             var reader = new FileReader();
             reader.onload = function(ev) {
-              filePreview.src = ev.target.result;
-              filePreview.style.display = 'block';
-              fileLabel.style.display = 'none';
+              filePreviewFront.src = ev.target.result;
+              filePreviewFront.style.display = 'block';
+              fileLabelFront.style.display = 'none';
             };
             reader.readAsDataURL(this.files[0]);
           }
         });
+      }
+
+      // File upload preview — back
+      var fileUploadBack = document.getElementById('fileUploadBack');
+      var fileInputBack = document.getElementById('applyIdImageBack');
+      var fileLabelBack = document.getElementById('fileUploadLabelBack');
+      var filePreviewBack = document.getElementById('filePreviewBack');
+
+      if (fileUploadBack && fileInputBack) {
+        fileUploadBack.addEventListener('click', function() { fileInputBack.click(); });
+        fileInputBack.addEventListener('change', function() {
+          if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(ev) {
+              filePreviewBack.src = ev.target.result;
+              filePreviewBack.style.display = 'block';
+              fileLabelBack.style.display = 'none';
+            };
+            reader.readAsDataURL(this.files[0]);
+          }
+        });
+      }
+
+      // Helper: upload file
+      async function uploadFile(file, bucket, supaUrl, supaKey) {
+        var fileExt = file.name.split('.').pop();
+        var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
+        var formData = new FormData();
+        formData.append('file', file);
+
+        var uploadRes = await fetch(supaUrl + '/storage/v1/object/' + bucket + '/' + fileName, {
+          method: 'POST',
+          headers: { 'apikey': supaKey, 'Authorization': 'Bearer ' + supaKey },
+          body: formData
+        });
+
+        if (uploadRes.ok) {
+          return supaUrl + '/storage/v1/object/public/' + bucket + '/' + fileName;
+        } else {
+          var err = await uploadRes.json();
+          console.error('[Apply] Upload failed:', err);
+          throw new Error('فشل رفع الصورة: ' + (err.message || 'خطأ غير معروف'));
+        }
       }
 
       // Submit application
@@ -166,36 +205,27 @@
             var supaUrl = SITE.supabase.url;
             var supaKey = SITE.supabase.anonKey;
 
-            var imageUrl = '';
-            if (fileInput.files && fileInput.files[0]) {
-              var file = fileInput.files[0];
-              var fileExt = file.name.split('.').pop();
-              var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
-              var formData = new FormData();
-              formData.append('file', file);
+            var imageUrlFront = '';
+            var imageUrlBack = '';
 
-              console.log('[Apply] Uploading ID image to id-documents...');
-              var uploadRes = await fetch(supaUrl + '/storage/v1/object/id-documents/' + fileName, {
-                method: 'POST',
-                headers: { 'apikey': supaKey, 'Authorization': 'Bearer ' + supaKey },
-                body: formData
-              });
+            if (fileInputFront.files && fileInputFront.files[0]) {
+              console.log('[Apply] Uploading front ID...');
+              imageUrlFront = await uploadFile(fileInputFront.files[0], 'id-documents', supaUrl, supaKey);
+              console.log('[Apply] Front uploaded:', imageUrlFront);
+            }
 
-              if (uploadRes.ok) {
-                imageUrl = supaUrl + '/storage/v1/object/public/id-documents/' + fileName;
-                console.log('[Apply] Upload success:', imageUrl);
-              } else {
-                var uploadErr = await uploadRes.json();
-                console.error('[Apply] Upload failed:', uploadErr);
-                throw new Error('فشل رفع صورة الهوية: ' + (uploadErr.message || 'خطأ غير معروف'));
-              }
+            if (fileInputBack.files && fileInputBack.files[0]) {
+              console.log('[Apply] Uploading back ID...');
+              imageUrlBack = await uploadFile(fileInputBack.files[0], 'id-documents', supaUrl, supaKey);
+              console.log('[Apply] Back uploaded:', imageUrlBack);
             }
 
             var appData = {
               job_id: document.getElementById('applyJobId').value,
               full_name: document.getElementById('applyFullName').value.trim(),
               phone: document.getElementById('applyPhone').value.trim(),
-              id_image_url: imageUrl || null,
+              id_image_url: imageUrlFront || null,
+              id_image_back_url: imageUrlBack || null,
               source: 'online'
             };
 
@@ -220,8 +250,10 @@
             console.log('[Apply] Done!');
             successEl.style.display = 'flex';
             applyForm.reset();
-            filePreview.style.display = 'none';
-            fileLabel.style.display = '';
+            filePreviewFront.style.display = 'none';
+            fileLabelFront.style.display = '';
+            filePreviewBack.style.display = 'none';
+            fileLabelBack.style.display = '';
           } catch (err) {
             console.error('[Apply] Error:', err);
             errorEl.querySelector('span').textContent = err.message || 'حدث خطأ أثناء الإرسال';
