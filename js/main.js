@@ -321,7 +321,7 @@ function initPreloader() {
 
 /* ---------- Counter Animation ---------- */
 function initCounters() {
-  var counters = $$('.stat-num[data-count]');
+  var counters = $$('.ad-stat-num[data-count]');
   if (!counters.length) return;
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
