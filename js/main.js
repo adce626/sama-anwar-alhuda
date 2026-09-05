@@ -9,7 +9,8 @@ var SERVICES = [
   { key: 'cleaning', href: 'cleaning.html', icon: 'fa-broom' },
   { key: 'transport', href: 'transport.html', icon: 'fa-truck' },
   { key: 'delivery', href: 'delivery.html', icon: 'fa-bolt' },
-  { key: 'workforce', href: 'workforce.html', icon: 'fa-users' }
+  { key: 'workforce', href: 'workforce.html', icon: 'fa-users' },
+  { key: 'advertising', href: 'advertising.html', icon: 'fa-bullhorn' }
 ];
 
 var state = { lang: 'ar', theme: 'light' };
