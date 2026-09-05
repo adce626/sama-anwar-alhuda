@@ -46,25 +46,22 @@
     var isOpen = job.status === 'open';
     var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
     var statusClass = isOpen ? 'status-open' : 'status-closed';
+    var detailUrl = 'job.html?id=' + job.id;
 
-    return '<div class="job-card" data-dept="' + job.department + '">' +
-      '<div class="job-card-header">' +
-        '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
-        '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+    return '<a href="' + detailUrl + '" class="job-card-link">' +
+      '<div class="job-card" data-dept="' + job.department + '">' +
+        '<div class="job-card-header">' +
+          '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
+          '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+        '</div>' +
+        '<h3 class="job-title">' + (job.title || '') + '</h3>' +
+        '<div class="job-meta">' +
+          '<span><i class="fas fa-map-marker-alt"></i> ' + (job.location || '') + '</span>' +
+          (type ? '<span><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
+        '</div>' +
+        '<p class="job-desc">' + desc + '</p>' +
       '</div>' +
-      '<h3 class="job-title">' + (job.title || '') + '</h3>' +
-      '<div class="job-meta">' +
-        '<span><i class="fas fa-map-marker-alt"></i> ' + (job.location || '') + '</span>' +
-        (type ? '<span><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
-      '</div>' +
-      '<p class="job-desc">' + desc + '</p>' +
-      '<div class="job-card-actions">' +
-        (isOpen
-          ? '<a href="job.html?id=' + job.id + '" class="btn btn-red btn-sm"><i class="fas fa-eye"></i> ' + (lang === 'ar' ? 'التفاصيل' : 'Details') + '</a>'
-          : '<span class="btn btn-disabled btn-sm"><i class="fas fa-lock"></i> ' + (lang === 'ar' ? 'مغلقة' : 'Closed') + '</span>') +
-        '<button class="btn btn-outline btn-sm job-share-btn" data-id="' + job.id + '" data-title="' + (job.title || '') + '"><i class="fas fa-share-alt"></i></button>' +
-      '</div>' +
-    '</div>';
+    '</a>';
   }
 
   function filterJobs() {
