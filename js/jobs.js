@@ -285,5 +285,11 @@
     }
   }
 
-  fetchJobs();
+  fetchJobs().then(function() {
+    var applyParam = new URLSearchParams(window.location.search).get('apply');
+    if (applyParam && typeof window.openApplyModal === 'function') {
+      var job = allJobs.find(function(j) { return j.id === applyParam; });
+      if (job) window.openApplyModal(job.id, job.title);
+    }
+  });
 })();
