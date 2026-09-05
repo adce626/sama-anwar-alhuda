@@ -23,8 +23,8 @@
   };
 
   var typeLabels = {
-    ar: { full_time: 'دوام كامل', part_time: 'دوام جزئي', contract: 'عقد', temporary: 'مؤقت' },
-    en: { full_time: 'Full Time', part_time: 'Part Time', contract: 'Contract', temporary: 'Temporary' }
+    ar: { full_time: 'دوام كامل', part_time: 'دوام جزئي', contract: 'عقد', temporary: 'مؤقت', permanent: 'دائم' },
+    en: { full_time: 'Full Time', part_time: 'Part Time', contract: 'Contract', temporary: 'Temporary', permanent: 'Permanent' }
   };
 
   function getLang() { return document.documentElement.lang === 'en' ? 'en' : 'ar'; }
@@ -40,7 +40,7 @@
   function renderJobCard(job) {
     var lang = getLang();
     var dept = deptLabels[lang][job.department] || job.department;
-    var type = typeLabels[lang][job.work_type] || job.work_type || '';
+    var type = typeLabels[lang][job.employment_type] || job.employment_type || '';
     var desc = job.description || '';
     if (desc.length > 100) desc = desc.substring(0, 100) + '...';
 
