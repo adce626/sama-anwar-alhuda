@@ -254,13 +254,20 @@
       var key = SITE.supabase.anonKey;
       if (!url || !key || url === 'YOUR_SUPABASE_URL') throw new Error('Supabase not configured');
 
-      var response = await fetch(url + '/rest/v1/jobs?status=eq.open&order=created_at.desc', {
-        headers: { 'apikey': key, 'Authorization': 'Bearer ' + key }
+      var response = await fetch(url + '/rest/v1/jobs?select=*&order=created_at.desc', {
+        headers: { 'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' }
       });
 
-      if (!response.ok) throw new Error('Fetch failed');
+      console.log('[Jobs] Response status:', response.status);
+
+      if (!response.ok) {
+        var errText = await response.text();
+        console.error('[Jobs] Error:', errText);
+        throw new Error('Fetch failed: ' + response.status);
+      }
 
       allJobs = await response.json();
+      console.log('[Jobs] Found:', allJobs.length, allJobs);
       loadingEl.style.display = 'none';
 
       if (!allJobs || allJobs.length === 0) {
