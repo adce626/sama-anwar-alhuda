@@ -168,16 +168,26 @@
 
             var imageUrl = '';
             if (fileInput.files && fileInput.files[0]) {
-              var fileName = Date.now() + '_' + fileInput.files[0].name;
+              var file = fileInput.files[0];
+              var fileExt = file.name.split('.').pop();
+              var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
               var formData = new FormData();
-              formData.append('file', fileInput.files[0]);
-              var uploadRes = await fetch(supaUrl + '/storage/v1/object/job-applications/' + fileName, {
+              formData.append('file', file);
+
+              console.log('[Apply] Uploading ID image to id-documents...');
+              var uploadRes = await fetch(supaUrl + '/storage/v1/object/id-documents/' + fileName, {
                 method: 'POST',
                 headers: { 'apikey': supaKey, 'Authorization': 'Bearer ' + supaKey },
                 body: formData
               });
+
               if (uploadRes.ok) {
-                imageUrl = supaUrl + '/storage/v1/object/public/job-applications/' + fileName;
+                imageUrl = supaUrl + '/storage/v1/object/public/id-documents/' + fileName;
+                console.log('[Apply] Upload success:', imageUrl);
+              } else {
+                var uploadErr = await uploadRes.json();
+                console.error('[Apply] Upload failed:', uploadErr);
+                throw new Error('فشل رفع صورة الهوية: ' + (uploadErr.message || 'خطأ غير معروف'));
               }
             }
 
@@ -185,9 +195,11 @@
               job_id: document.getElementById('applyJobId').value,
               full_name: document.getElementById('applyFullName').value.trim(),
               phone: document.getElementById('applyPhone').value.trim(),
-              id_image_url: imageUrl
+              id_image_url: imageUrl || null,
+              source: 'online'
             };
 
+            console.log('[Apply] Submitting:', appData);
             var res = await fetch(supaUrl + '/rest/v1/job_applications', {
               method: 'POST',
               headers: {
@@ -199,14 +211,20 @@
               body: JSON.stringify(appData)
             });
 
-            if (!res.ok) throw new Error('Submit failed');
+            if (!res.ok) {
+              var resErr = await res.json();
+              console.error('[Apply] Submit failed:', resErr);
+              throw new Error('فشل إرسال الطلب');
+            }
 
+            console.log('[Apply] Done!');
             successEl.style.display = 'flex';
             applyForm.reset();
             filePreview.style.display = 'none';
             fileLabel.style.display = '';
           } catch (err) {
-            console.error('Application error:', err);
+            console.error('[Apply] Error:', err);
+            errorEl.querySelector('span').textContent = err.message || 'حدث خطأ أثناء الإرسال';
             errorEl.style.display = 'flex';
           } finally {
             submitBtn.disabled = false;
