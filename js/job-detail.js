@@ -68,14 +68,24 @@
       var lang = getLang();
       var dept = deptLabels[lang][job.department] || job.department;
       var type = typeLabels[lang][job.employment_type] || job.employment_type || '';
+      var isOpen = job.status === 'open';
+      var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
+      var statusClass = isOpen ? 'status-open' : 'status-closed';
 
       document.title = (job.title || 'الوظيفة') + ' — سما انوار الهدى';
 
       titleEl.textContent = job.title || '';
       metaEl.innerHTML = '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
+        '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
         '<span class="job-meta-item"><i class="fas fa-map-marker-alt"></i> ' + (job.location || '') + '</span>' +
         (type ? '<span class="job-meta-item"><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
         '<span class="job-meta-item"><i class="fas fa-calendar-alt"></i> ' + formatDate(job.created_at) + '</span>';
+
+      // If job is closed, hide apply button and show notice
+      var applySection = document.querySelector('.job-apply-section');
+      if (!isOpen && applySection) {
+        applySection.innerHTML = '<div class="closed-notice"><i class="fas fa-info-circle"></i> ' + (lang === 'ar' ? 'هذه الوظيفة مغلقة حالياً — يمكنك تصفح الوظائف الأخرى' : 'This job is currently closed — browse other available positions') + '</div>';
+      }
 
       bodyEl.innerHTML = '<div class="job-detail-desc"><h3>' + (lang === 'ar' ? 'وصف الوظيفة' : 'Job Description') + '</h3><p>' + (job.description || '') + '</p></div>' +
         (job.requirements ? '<div class="job-detail-req"><h3>' + (lang === 'ar' ? 'المتطلبات' : 'Requirements') + '</h3><p>' + job.requirements + '</p></div>' : '') +

@@ -43,11 +43,14 @@
     var type = typeLabels[lang][job.employment_type] || job.employment_type || '';
     var desc = job.description || '';
     if (desc.length > 100) desc = desc.substring(0, 100) + '...';
+    var isOpen = job.status === 'open';
+    var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
+    var statusClass = isOpen ? 'status-open' : 'status-closed';
 
     return '<div class="job-card" data-dept="' + job.department + '">' +
       '<div class="job-card-header">' +
         '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
-        '<span class="job-date"><i class="fas fa-calendar-alt"></i> ' + formatDate(job.created_at) + '</span>' +
+        '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
       '</div>' +
       '<h3 class="job-title">' + (job.title || '') + '</h3>' +
       '<div class="job-meta">' +
@@ -56,7 +59,9 @@
       '</div>' +
       '<p class="job-desc">' + desc + '</p>' +
       '<div class="job-card-actions">' +
-        '<a href="job.html?id=' + job.id + '" class="btn btn-red btn-sm"><i class="fas fa-eye"></i> ' + (getLang() === 'ar' ? 'التفاصيل' : 'Details') + '</a>' +
+        (isOpen
+          ? '<a href="job.html?id=' + job.id + '" class="btn btn-red btn-sm"><i class="fas fa-eye"></i> ' + (lang === 'ar' ? 'التفاصيل' : 'Details') + '</a>'
+          : '<span class="btn btn-disabled btn-sm"><i class="fas fa-lock"></i> ' + (lang === 'ar' ? 'مغلقة' : 'Closed') + '</span>') +
         '<button class="btn btn-outline btn-sm job-share-btn" data-id="' + job.id + '" data-title="' + (job.title || '') + '"><i class="fas fa-share-alt"></i></button>' +
       '</div>' +
     '</div>';
