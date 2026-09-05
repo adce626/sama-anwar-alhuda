@@ -319,6 +319,32 @@ function initPreloader() {
   setTimeout(hide, 3500);
 }
 
+/* ---------- Counter Animation ---------- */
+function initCounters() {
+  var counters = $$('.stat-num[data-count]');
+  if (!counters.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var current = 0;
+        var increment = Math.ceil(target / 60);
+        var timer = setInterval(function() {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = current;
+        }, 30);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(c) { observer.observe(c); });
+}
+
 /* ---------- Boot ---------- */
 document.addEventListener('DOMContentLoaded', function () {
   renderServiceCards();
@@ -327,5 +353,6 @@ document.addEventListener('DOMContentLoaded', function () {
   wireEvents();
   initReveal();
   initTilt();
+  initCounters();
   initPreloader();
 });
