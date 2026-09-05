@@ -2,7 +2,7 @@
    سما انوار الهدى | Service Worker — PWA v2
    ============================================================ */
 
-const CACHE_NAME = 'sama-v3';
+const CACHE_NAME = 'sama-v4';
 
 const urlsToCache = [
   '/',
@@ -57,6 +57,10 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+
+  if (!url.protocol.startsWith('http')) {
+    return;
+  }
 
   if (excludedUrls.some(excluded => url.href.includes(excluded))) {
     return;

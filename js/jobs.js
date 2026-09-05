@@ -44,7 +44,7 @@
     var desc = job.description || '';
     if (desc.length > 100) desc = desc.substring(0, 100) + '...';
 
-    return '<div class="job-card reveal" data-dept="' + job.department + '">' +
+    return '<div class="job-card" data-dept="' + job.department + '">' +
       '<div class="job-card-header">' +
         '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
         '<span class="job-date"><i class="fas fa-calendar-alt"></i> ' + formatDate(job.created_at) + '</span>' +

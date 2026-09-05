@@ -210,7 +210,17 @@ var PWA = {
     });
   },
 
-  // ==================== Request Notification Permission ====================
+  // ==================== Check For Updates ====================
+  checkForUpdates: function(registration) {
+    registration.addEventListener('updatefound', function() {
+      console.log('[PWA] New service worker found');
+    });
+  },
+
+  // ==================== Setup Updates (stub) ====================
+  setupUpdates: function() {
+    console.log('[PWA] Updates ready');
+  },
   requestNotificationPermission: function() {
     if ('Notification' in window) {
       Notification.requestPermission().then(function(permission) {
