@@ -71,24 +71,50 @@
       var isOpen = job.status === 'open';
       var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
       var statusClass = isOpen ? 'status-open' : 'status-closed';
+      var salary = job.salary || '';
+      var requirements = job.requirements || '';
+      var description = job.description || '';
 
       document.title = (job.title || 'الوظيفة') + ' — سما انوار الهدى';
 
       titleEl.textContent = job.title || '';
-      metaEl.innerHTML = '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
-        '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+
+      metaEl.innerHTML =
+        '<span class="job-status-badge ' + statusClass + '"><span class="status-dot"></span>' + statusLabel + '</span>' +
         '<span class="job-meta-item"><i class="fas fa-map-marker-alt"></i> ' + (job.location || '') + '</span>' +
         (type ? '<span class="job-meta-item"><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
-        '<span class="job-meta-item"><i class="fas fa-calendar-alt"></i> ' + formatDate(job.created_at) + '</span>';
+        (salary ? '<span class="job-meta-item job-meta-salary"><i class="fas fa-coins"></i> ' + salary + '</span>' : '') +
+        '<span class="job-meta-item"><i class="far fa-calendar"></i> ' + formatDate(job.created_at) + '</span>';
 
       var applySection = document.querySelector('.job-apply-section');
       if (!isOpen && applySection) {
         applySection.innerHTML = '<div class="closed-notice"><i class="fas fa-info-circle"></i> ' + (lang === 'ar' ? 'هذه الوظيفة مغلقة حالياً — يمكنك تصفح الوظائف الأخرى' : 'This job is currently closed — browse other available positions') + '</div>';
       }
 
-      bodyEl.innerHTML = '<div class="job-detail-desc"><h3>' + (lang === 'ar' ? 'وصف الوظيفة' : 'Job Description') + '</h3><p>' + (job.description || '') + '</p></div>' +
-        (job.requirements ? '<div class="job-detail-req"><h3>' + (lang === 'ar' ? 'المتطلبات' : 'Requirements') + '</h3><p>' + job.requirements + '</p></div>' : '') +
-        (job.benefits ? '<div class="job-detail-benefits"><h3>' + (lang === 'ar' ? 'المميزات' : 'Benefits') + '</h3><p>' + job.benefits + '</p></div>' : '');
+      var bodyHTML = '';
+
+      if (description) {
+        bodyHTML += '<div class="job-detail-section">' +
+          '<div class="job-detail-section-header"><i class="fas fa-align-right"></i><h3>' + (lang === 'ar' ? 'وصف الوظيفة' : 'Job Description') + '</h3></div>' +
+          '<div class="job-detail-section-body"><p>' + description + '</p></div>' +
+        '</div>';
+      }
+
+      if (requirements) {
+        bodyHTML += '<div class="job-detail-section">' +
+          '<div class="job-detail-section-header"><i class="fas fa-clipboard-check"></i><h3>' + (lang === 'ar' ? 'المتطلبات' : 'Requirements') + '</h3></div>' +
+          '<div class="job-detail-section-body"><p>' + requirements + '</p></div>' +
+        '</div>';
+      }
+
+      if (!description && !requirements) {
+        bodyHTML += '<div class="job-detail-section">' +
+          '<div class="job-detail-section-header"><i class="fas fa-info-circle"></i><h3>' + (lang === 'ar' ? 'تفاصيل الوظيفة' : 'Job Details') + '</h3></div>' +
+          '<div class="job-detail-section-body"><p>' + (lang === 'ar' ? 'لا توجد تفاصيل إضافية لهذه الوظيفة' : 'No additional details for this job') + '</p></div>' +
+        '</div>';
+      }
+
+      bodyEl.innerHTML = bodyHTML;
 
       var pageUrl = window.location.href;
       var shareText = lang === 'ar' ? 'شوف هذي الوظيفة: ' + job.title : 'Check this job: ' + job.title;

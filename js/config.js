@@ -36,6 +36,6 @@ var SITE = {
   },
   supabase: {
     url: 'https://nthnmytzpzgulskewmku.supabase.co',
-    anonKey: 'sb_publishable_8_oArsvXjvcWbrIOnKYd7Q_ntBbZUHx'
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50aG5teXR6cHpndWxza2V3bWt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MjYxMDYsImV4cCI6MjEwNDAwMjEwNn0.ugI9jJRAmfSzFBdM7eUiKL_l3FlwHMxvvnlwf0m6aUE'
   }
 };

@@ -41,25 +41,31 @@
     var lang = getLang();
     var dept = deptLabels[lang][job.department] || job.department;
     var type = typeLabels[lang][job.employment_type] || job.employment_type || '';
-    var desc = job.description || '';
-    if (desc.length > 100) desc = desc.substring(0, 100) + '...';
     var isOpen = job.status === 'open';
     var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
     var statusClass = isOpen ? 'status-open' : 'status-closed';
     var detailUrl = 'job.html?id=' + job.id;
+    var salary = job.salary || '';
+    var location = job.location || '';
+    var date = formatDate(job.created_at);
 
     return '<a href="' + detailUrl + '" class="job-card-link">' +
       '<div class="job-card" data-dept="' + job.department + '">' +
-        '<div class="job-card-header">' +
-          '<span class="job-dept-badge"><i class="fas fa-building"></i> ' + dept + '</span>' +
-          '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+        '<div class="job-card-top">' +
+          '<span class="job-status-badge ' + statusClass + '">' +
+            '<span class="status-dot"></span>' + statusLabel +
+          '</span>' +
+          '<span class="job-date"><i class="far fa-calendar"></i> ' + date + '</span>' +
         '</div>' +
         '<h3 class="job-title">' + (job.title || '') + '</h3>' +
-        '<div class="job-meta">' +
-          '<span><i class="fas fa-map-marker-alt"></i> ' + (job.location || '') + '</span>' +
-          (type ? '<span><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
+        '<div class="job-card-info">' +
+          (location ? '<div class="job-info-item"><i class="fas fa-map-marker-alt"></i><span>' + location + '</span></div>' : '') +
+          (type ? '<div class="job-info-item"><i class="fas fa-clock"></i><span>' + type + '</span></div>' : '') +
+          (salary ? '<div class="job-info-item job-salary"><i class="fas fa-coins"></i><span>' + salary + '</span></div>' : '') +
         '</div>' +
-        '<p class="job-desc">' + desc + '</p>' +
+        '<div class="job-card-footer">' +
+          '<span class="job-apply-hint">' + (lang === 'ar' ? 'اضغط للتفاصيل والتقديم' : 'Click to view & apply') + ' <i class="fas fa-arrow-left"></i></span>' +
+        '</div>' +
       '</div>' +
     '</a>';
   }
