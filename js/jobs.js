@@ -39,32 +39,28 @@
 
   function renderJobCard(job) {
     var lang = getLang();
-    var dept = deptLabels[lang][job.department] || job.department;
-    var type = typeLabels[lang][job.employment_type] || job.employment_type || '';
     var isOpen = job.status === 'open';
     var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
     var statusClass = isOpen ? 'status-open' : 'status-closed';
     var detailUrl = 'job.html?id=' + job.id;
     var salary = job.salary || '';
     var location = job.location || '';
-    var date = formatDate(job.created_at);
+    var type = job.employment_type || '';
+
+    var metaHTML = '';
+    if (location) metaHTML += '<span><i class="fas fa-map-marker-alt"></i> ' + location + '</span>';
+    if (type) metaHTML += '<span><i class="fas fa-clock"></i> ' + type + '</span>';
+    if (salary) metaHTML += '<span class="job-salary"><i class="fas fa-coins"></i> ' + salary + '</span>';
 
     return '<a href="' + detailUrl + '" class="job-card-link">' +
       '<div class="job-card" data-dept="' + job.department + '">' +
         '<div class="job-card-top">' +
-          '<span class="job-status-badge ' + statusClass + '">' +
-            '<span class="status-dot"></span>' + statusLabel +
-          '</span>' +
-          '<span class="job-date"><i class="far fa-calendar"></i> ' + date + '</span>' +
+          '<h3 class="job-title">' + (job.title || '') + '</h3>' +
+          '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
         '</div>' +
-        '<h3 class="job-title">' + (job.title || '') + '</h3>' +
-        '<div class="job-card-info">' +
-          (location ? '<div class="job-info-item"><i class="fas fa-map-marker-alt"></i><span>' + location + '</span></div>' : '') +
-          (type ? '<div class="job-info-item"><i class="fas fa-clock"></i><span>' + type + '</span></div>' : '') +
-          (salary ? '<div class="job-info-item job-salary"><i class="fas fa-coins"></i><span>' + salary + '</span></div>' : '') +
-        '</div>' +
+        (metaHTML ? '<div class="job-meta">' + metaHTML + '</div>' : '') +
         '<div class="job-card-footer">' +
-          '<span class="job-apply-hint">' + (lang === 'ar' ? 'اضغط للتفاصيل والتقديم' : 'Click to view & apply') + ' <i class="fas fa-arrow-left"></i></span>' +
+          '<span class="job-apply-hint">' + (lang === 'ar' ? 'تفاصيل' : 'Details') + ' <i class="fas fa-arrow-left"></i></span>' +
         '</div>' +
       '</div>' +
     '</a>';
