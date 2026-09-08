@@ -257,6 +257,7 @@
 
         var appData = {
           job_id: document.getElementById('applyJobId').value,
+          job_title: document.getElementById('modalJobTitle').textContent || null,
           full_name: document.getElementById('applyFullName').value.trim(),
           phone: document.getElementById('applyPhone').value.trim(),
           id_image_url: imageUrlFront || null,
