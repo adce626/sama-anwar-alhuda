@@ -53,8 +53,6 @@
       '    </li>' +
       '    <li><a class="nav-link" data-nav="about" href="about.html" data-i18n="nav.about">About</a></li>' +
       '    <li><a class="nav-link" data-nav="jobs" href="jobs.html" data-i18n="nav.jobs">Jobs</a></li>' +
-      '    <li><a class="nav-link" data-nav="testimonials" href="testimonials.html">آراء العملاء</a></li>' +
-      '    <li><a class="nav-link" data-nav="faq" href="faq.html">الأسئلة الشائعة</a></li>' +
       '    <li><a class="nav-link" data-nav="contact" href="contact.html" data-i18n="nav.contact">Contact</a></li>' +
       '  </ul>' +
       '  <div class="nav-tools">' +
@@ -109,8 +107,8 @@
     // Highlight the current page in the nav
     var page = document.body.getAttribute('data-page') || 'home';
     var navMap = {
-      index: 'home', jobs: 'jobs', job: 'jobs', testimonials: 'testimonials', faq: 'faq', catering: 'services', cleaning: 'services', transport: 'services',
-      delivery: 'services', workforce: 'services', advertising: 'services', about: 'about', contact: 'contact'
+      index: 'home', jobs: 'jobs', job: 'jobs', catering: 'services', cleaning: 'services', transport: 'services',
+      delivery: 'services', workforce: 'services', about: 'about', contact: 'contact'
     };
     var activeNav = navMap[page] || 'home';
     var links = document.querySelectorAll('.nav-link');
