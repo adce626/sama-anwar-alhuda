@@ -107,7 +107,7 @@
     // Highlight the current page in the nav
     var page = document.body.getAttribute('data-page') || 'home';
     var navMap = {
-      index: 'home', catering: 'services', cleaning: 'services', transport: 'services',
+      index: 'home', jobs: 'jobs', catering: 'services', cleaning: 'services', transport: 'services',
       delivery: 'services', workforce: 'services', about: 'about', contact: 'contact'
     };
     var activeNav = navMap[page] || 'home';
