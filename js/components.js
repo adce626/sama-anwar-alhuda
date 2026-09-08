@@ -53,6 +53,8 @@
       '    </li>' +
       '    <li><a class="nav-link" data-nav="about" href="about.html" data-i18n="nav.about">About</a></li>' +
       '    <li><a class="nav-link" data-nav="jobs" href="jobs.html" data-i18n="nav.jobs">Jobs</a></li>' +
+      '    <li><a class="nav-link" data-nav="testimonials" href="testimonials.html" data-i18n="nav.testimonials">Testimonials</a></li>' +
+      '    <li><a class="nav-link" data-nav="faq" href="faq.html" data-i18n="nav.faq">FAQ</a></li>' +
       '    <li><a class="nav-link" data-nav="contact" href="contact.html" data-i18n="nav.contact">Contact</a></li>' +
       '  </ul>' +
       '  <div class="nav-tools">' +
