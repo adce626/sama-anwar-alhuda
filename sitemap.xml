@@ -159,4 +159,32 @@
     </image:image>
   </url>
 
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/testimonials.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sama-anwar-alhuda.vercel.app/testimonials.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sama-anwar-alhuda.vercel.app/testimonials.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sama-anwar-alhuda.vercel.app/testimonials.html" />
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/logo/logo.jpg</image:loc>
+      <image:title>آراء العملاء - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/faq.html</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://sama-anwar-alhuda.vercel.app/faq.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sama-anwar-alhuda.vercel.app/faq.html?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sama-anwar-alhuda.vercel.app/faq.html" />
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/logo/logo.jpg</image:loc>
+      <image:title>الأسئلة الشائعة - سما انوار الهدى</image:title>
+    </image:image>
+  </url>
+
 </urlset>
