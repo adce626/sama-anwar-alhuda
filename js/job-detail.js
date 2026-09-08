@@ -77,6 +77,41 @@
 
       document.title = (job.title || 'الوظيفة') + ' — سما انوار الهدى';
 
+      // Inject Schema.org
+      var existingSchema = document.getElementById('job-schema');
+      if (existingSchema) existingSchema.remove();
+      var schema = {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "title": job.title || "",
+        "description": job.description || job.title || "",
+        "datePosted": job.created_at ? job.created_at.split('T')[0] : new Date().toISOString().split('T')[0],
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "سما انوار الهدى"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": job.location || "كربلاء",
+            "addressCountry": "IQ"
+          }
+        },
+        "employmentType": job.employment_type || "FULL_TIME"
+      };
+      if (job.salary) {
+        schema.baseSalary = { "@type": "MonetaryAmount", "currency": "IQD", "value": job.salary };
+      }
+      if (job.status === 'closed') {
+        schema.validThrough = new Date().toISOString().split('T')[0];
+      }
+      var schemaScript = document.createElement('script');
+      schemaScript.type = 'application/ld+json';
+      schemaScript.id = 'job-schema';
+      schemaScript.textContent = JSON.stringify(schema);
+      document.head.appendChild(schemaScript);
+
       titleEl.textContent = job.title || '';
 
       metaEl.innerHTML =

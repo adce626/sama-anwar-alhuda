@@ -303,6 +303,58 @@
   // Expose openApplyModal for job-detail.js
   window.openApplyModal = openApplyModal;
 
+  function injectSchema(jobs) {
+    var existing = document.getElementById('jobs-schema');
+    if (existing) existing.remove();
+    if (!jobs || jobs.length === 0) return;
+    var schema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "الوظائف المتاحة — سما انوار الهدى",
+      "numberOfItems": jobs.length,
+      "itemListElement": jobs.slice(0, 10).map(function(job, i) {
+        var entry = {
+          "@type": "ListItem",
+          "position": i + 1,
+          "item": {
+            "@type": "JobPosting",
+            "title": job.title || "",
+            "description": job.description || job.title || "",
+            "datePosted": job.created_at ? job.created_at.split('T')[0] : new Date().toISOString().split('T')[0],
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "سما انوار الهدى"
+            },
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": job.location || "كربلاء",
+                "addressCountry": "IQ"
+              }
+            },
+            "employmentType": job.employment_type || "FULL_TIME",
+            "jobPostingType": "EMPLOYMENT_TYPE"
+          }
+        };
+        if (job.status === 'closed') entry.item.validThrough = new Date().toISOString().split('T')[0];
+        if (job.salary) {
+          entry.item.baseSalary = {
+            "@type": "MonetaryAmount",
+            "currency": "IQD",
+            "value": job.salary
+          };
+        }
+        return entry;
+      })
+    };
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'jobs-schema';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
   // Fetch jobs
   async function fetchJobs() {
     try {
@@ -325,6 +377,8 @@
       allJobs = await response.json();
       console.log('[Jobs] Found:', allJobs.length);
       loadingEl.style.display = 'none';
+
+      injectSchema(allJobs);
 
       if (!allJobs || allJobs.length === 0) {
         emptyEl.style.display = 'flex';
