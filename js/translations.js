@@ -13,8 +13,6 @@ const I18N = {
       about: 'من نحن',
       services: 'خدماتنا',
       jobs: 'الوظائف',
-      testimonials: 'شهادات العملاء',
-      faq: 'الأسئلة الشائعة',
       contact: 'تواصل معنا',
       call: 'اتصل الآن'
     },
@@ -236,51 +234,9 @@ const I18N = {
       applyError: 'حدث خطأ أثناء الإرسال. حاول مرة أخرى.'
     },
 
-    testimonials: {
-      crumb: 'شهادات العملاء',
-      eyebrow: 'آراء عملائنا',
-      title: 'شهادات عملائنا الكرام',
-      sub: 'نفخر بثقة عملائنا — شوف شهاداتهم وتجاربهم مع خدماتنا',
-      statClients: 'عميل',
-      statYears: 'سنوات خبرة',
-      statDepts: 'قسم',
-      statSatisfy: 'نسبة الرضا',
-      t1: { name: 'مستشفى الإمام الحسن المجتبى (ع) التعليمي', role: 'مؤسسة تعليمية — كربلاء', text: 'نتطلع للتعاون مع شركة سما انوار الهدى في خدمات التنظيف والعمالة. شركات موثوقة وفريق عمل محترف.' },
-      t2: { name: 'مدير مطعم', role: 'مطعم — كربلاء', text: 'خدمة التغذية ممتازة جداً. الأكل طازج والتقديم احترافي. أنصح فيهم بشدة للفعاليات والمناسبات.' },
-      t3: { name: 'مجمع سكني', role: 'مجمع سكني — كربلاء', text: 'استخدمنا خدمة التنظيف لمجمعنا السكني وكانت النتيجة ممتازة. فريق نظيف ومنظم ومحترف.' },
-      t4: { name: 'صاحب متجر', role: 'متجر — كربلاء', text: 'خدمة التوصيل السريع وفرت علينا الكثير. التوصيل في الوقت المحدد والمندوبين ملتزمين.' },
-      t5: { name: 'إدارة فندق', role: 'فندق — كربلاء', text: 'التعاون مع سما انوار الهدى كان ممتازاً. خدمة تشغيل الأيدي العاملة من أفضل ما جربنا.' },
-      t6: { name: 'مؤسسة حكومية', role: 'مؤسسة حكومية — كربلاء', text: 'نوصي بالتعامل مع شركة سما انوار الهدى. خدمة متميزة وأسعار تنافسية والتزام بالمواعيد.' },
-      ctaTitle: 'كن من عملائنا الكرام',
-      ctaSub: 'تواصل معنا الحين واحصل على أفضل خدمة'
-    },
-
-    faq: {
-      crumb: 'الأسئلة الشائعة',
-      eyebrow: 'FAQ',
-      title: 'الأسئلة الشائعة',
-      sub: 'إجابات لأكثر الأسئلة شيوعاً حول خدماتنا',
-      q1: 'ما هي الخدمات التي تقدمها شركة سما انوار الهدى؟',
-      a1: 'نقدم 6 خدمات رئيسية: التغذية (المطاعم والمناسبات)، التنظيف (المنشآت والمنازل)، النقل العام، التوصيل السريع، تشغيل الأيدي العاملة، والإعلان والترويج.',
-      q2: 'هل تغطي الشركة مناطق خارج كربلاء؟',
-      a2: 'حالياً نركز على خدماتنا داخل كربلاء والمحافظات المجاورة. تواصل معنا لمعرفة تغطية المنطقة المحددة.',
-      q3: 'كيف يمكنني التواصل معكم لطلب خدمة؟',
-      a3: 'يمكنك التواصل عبر الواتساب على 0782 586 5514، أو من خلال صفحة طلب الخدمة في الموقع، أو عبر وسائل التواصل الاجتماعي.',
-      q4: 'هل تقدمون عروض أو خصومات للعملاء الجدد؟',
-      a4: 'نعم، نقدم عروض خاصة للعملاء الجدد والمشاريع الكبيرة. تواصل معنا لمعرفة العروض الحالية.',
-      q5: 'ما هي ساعات العمل؟',
-      a5: 'نعمل طوال أيام الأسبوع من الساعة 8 صباحاً حتى 6 مساءً. للاستشارات العاجلة، تواصل معنا عبر الواتساب.',
-      q6: 'هل توفرون عقود رسمية للخدمات؟',
-      a6: 'نعم، نعمل وفق قانون الشركات رقم 21 لسنة 1997 المعدل ونوفر عقوداً رسمية لجميع خدماتنا.',
-      q7: 'كم تستغرق عملية التوصيل؟',
-      a7: 'خدمة التوصيل السريع تستغرق عادة من 30 دقيقة إلى ساعة حسب الموقع والحجم. التوصيل العادي خلال 24 ساعة.',
-      q8: 'هل يمكنني تتبع حالة طلبي؟',
-      a8: 'نعم، يمكنك التواصل معنا عبر الواتساب لمتابعة حالة طلبك في أي وقت.',
-      ctaTitle: 'لقيت إجابة لسؤالك؟',
-      ctaSub: 'اذا عندك سؤال ثاني، تواصل معنا ونساعدك'
-    },
-
     serviceForm: {
+      eyebrow: 'طلب خدمة',
+      title: 'أرسل طلبك الآن',
       sub: 'اختر الخدمة التي تحتاجها وسن التواصل معك في أقرب وقت',
       name: 'الاسم الكامل',
       namePh: 'أدخل اسمك الكامل',
@@ -394,8 +350,6 @@ const I18N = {
       about: 'About',
       services: 'Services',
       jobs: 'Jobs',
-      testimonials: 'Testimonials',
-      faq: 'FAQ',
       contact: 'Contact',
       call: 'Call Now'
     },
@@ -613,50 +567,6 @@ const I18N = {
       applySubmit: 'Submit Application',
       applySuccess: 'Your application has been submitted! We will contact you soon.',
       applyError: 'An error occurred. Please try again.'
-    },
-
-    testimonials: {
-      crumb: 'Client Testimonials',
-      eyebrow: 'Our Clients',
-      title: 'What Our Clients Say',
-      sub: 'We take pride in our clients trust — see their feedback and experience',
-      statClients: 'Clients',
-      statYears: 'Years Experience',
-      statDepts: 'Departments',
-      statSatisfy: 'Satisfaction',
-      t1: { name: 'Imam Hassan Al-Mujtaba Hospital', role: 'Educational Institution — Karbala', text: 'We look forward to collaborating with Sama Anwar Al-Huda for cleaning and workforce services. A reliable company with a professional team.' },
-      t2: { name: 'Restaurant Manager', role: 'Restaurant — Karbala', text: 'The catering service is excellent. Fresh food and professional presentation. Highly recommended for events and occasions.' },
-      t3: { name: 'Residential Complex', role: 'Residential Complex — Karbala', text: 'We used the cleaning service for our residential complex and the results were outstanding. An organized and professional team.' },
-      t4: { name: 'Shop Owner', role: 'Shop — Karbala', text: 'The express delivery service saved us a lot. On-time delivery and committed representatives.' },
-      t5: { name: 'Hotel Management', role: 'Hotel — Karbala', text: 'Our collaboration with Sama Anwar Al-Huda was excellent. Workforce staffing service is among the best we have tried.' },
-      t6: { name: 'Government Institution', role: 'Government Institution — Karbala', text: 'We recommend dealing with Sama Anwar Al-Huda. Outstanding service, competitive prices, and commitment to deadlines.' },
-      ctaTitle: 'Become One of Our Valued Clients',
-      ctaSub: 'Contact us now and get the best service'
-    },
-
-    faq: {
-      crumb: 'FAQ',
-      eyebrow: 'FAQ',
-      title: 'Frequently Asked Questions',
-      sub: 'Answers to the most common questions about our services',
-      q1: 'What services does Sama Anwar Al-Huda offer?',
-      a1: 'We offer 6 main services: Catering (restaurants & events), Cleaning (facilities & homes), General Transport, Express Delivery, Workforce Staffing, and Advertising & Promotion.',
-      q2: 'Does the company cover areas outside Karbala?',
-      a2: 'Currently we focus on services within Karbala and neighboring governorates. Contact us to check coverage for your specific area.',
-      q3: 'How can I contact you to request a service?',
-      a3: 'You can reach us via WhatsApp at 0782 586 5514, through the service request page on our website, or via social media.',
-      q4: 'Do you offer discounts for new clients?',
-      a4: 'Yes, we offer special deals for new clients and large projects. Contact us to learn about current offers.',
-      q5: 'What are your working hours?',
-      a5: 'We work every day from 8 AM to 6 PM. For urgent consultations, contact us via WhatsApp.',
-      q6: 'Do you provide official contracts for services?',
-      a6: 'Yes, we operate under Business Law No. 21 of 1997 (as amended) and provide official contracts for all our services.',
-      q7: 'How long does delivery take?',
-      a7: 'Express delivery usually takes 30 minutes to an hour depending on location and size. Standard delivery within 24 hours.',
-      q8: 'Can I track my order status?',
-      a8: 'Yes, you can contact us via WhatsApp to follow up on your order status at any time.',
-      ctaTitle: 'Found an answer to your question?',
-      ctaSub: 'If you have another question, contact us and we will help you'
     },
 
     serviceForm: {

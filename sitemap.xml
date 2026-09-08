@@ -159,28 +159,4 @@
     </image:image>
   </url>
 
-  <url>
-    <loc>https://sama-anwar-alhuda.vercel.app/testimonials.html</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://sama-anwar-alhuda.vercel.app/testimonials.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://sama-anwar-alhuda.vercel.app/testimonials.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sama-anwar-alhuda.vercel.app/testimonials.html" />
-    <image:image>
-      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/imam-hassan-hospital-1.jpg</image:loc>
-      <image:title>شهادات العملاء - سما انوار الهدى</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://sama-anwar-alhuda.vercel.app/faq.html</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://sama-anwar-alhuda.vercel.app/faq.html" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://sama-anwar-alhuda.vercel.app/faq.html" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://sama-anwar-alhuda.vercel.app/faq.html" />
-  </url>
-
 </urlset>
