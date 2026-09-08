@@ -261,6 +261,7 @@
           phone: document.getElementById('applyPhone').value.trim(),
           id_image_url: imageUrlFront || null,
           id_image_back_url: imageUrlBack || null,
+          status: 'جديد',
           source: 'online'
         };
 
@@ -279,7 +280,7 @@
         if (!res.ok) {
           var resErr = await res.json();
           console.error('[Apply] Submit failed:', resErr);
-          throw new Error('فشل إرسال الطلب');
+          throw new Error('فشل إرسال الطلب: ' + (resErr.message || resErr.hint || 'خطأ بالقاعدة'));
         }
 
         console.log('[Apply] Done!');
