@@ -9,6 +9,7 @@
   var PHONE_TEL = SITE.phone.tel;
   var PHONE_DISPLAY = SITE.phone.display;
   var WA_HREF = SITE.phone.whatsapp;
+  var WA_DISPLAY = SITE.phone.whatsappDisplay;
   var FB_HREF = SITE.social.facebook;
   var IG_HREF = SITE.social.instagram;
   var TW_HREF = SITE.social.twitter;
@@ -88,7 +89,7 @@
       '  </div>' +
       '  <div class="footer-contact"><h4 data-i18n="footer.contact"></h4>' +
       '    <p><i class="fas fa-phone"></i><a href="tel:' + PHONE_TEL + '" dir="ltr">' + PHONE_DISPLAY + '</a></p>' +
-      '    <p><i class="fab fa-whatsapp"></i><a href="' + WA_HREF + '" target="_blank" rel="noopener" dir="ltr">' + PHONE_DISPLAY + '</a></p>' +
+      '    <p><i class="fab fa-whatsapp"></i><a href="' + WA_HREF + '" target="_blank" rel="noopener" dir="ltr">' + WA_DISPLAY + '</a></p>' +
       '    <p><i class="fas fa-envelope"></i><a href="mailto:' + EMAIL + '" dir="ltr">' + EMAIL + '</a></p>' +
       '    <p><i class="fas fa-map-marker-alt"></i><span data-i18n="contact.addresstext">Karbala</span></p>' +
       '  </div>' +

@@ -5,7 +5,8 @@ var SITE = {
   phone: {
     tel: '+9647825865514',
     display: '0782 586 5514',
-    whatsapp: 'https://wa.me/9647718559456'
+    whatsapp: 'https://wa.me/9647718559456',
+    whatsappDisplay: '+964 771 855 9456'
   },
   email: 'ainwaralhudaa1@gmail.com',
   social: {
