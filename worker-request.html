@@ -75,6 +75,18 @@
     .container{width:min(1180px,92%);margin-inline:auto}
     .hero{position:relative;min-height:100svh;display:grid;place-items:center;overflow:hidden;padding:150px 0 90px;background:#111;border-bottom:4px solid #c21e2c}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.preloader{display:none}}
+    @media(max-width:640px){
+      .page-hero{padding:120px 0 50px}
+      .page-hero h1{font-size:1.8rem}
+      .page-hero .ph-cta{flex-direction:column}
+      .page-hero .ph-cta .btn{width:100%;justify-content:center}
+      .service-form{padding:20px 16px}
+      .form-row{grid-template-columns:1fr}
+      .value-grid{grid-template-columns:1fr}
+      .band-cta .band-buttons{flex-direction:column}
+      .band-cta .band-buttons .btn{width:100%;justify-content:center}
+      .value-card{padding:24px 20px}
+    }
   </style>
   <link rel="stylesheet" href="css/style.css?v=3">
 
