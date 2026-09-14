@@ -24,8 +24,8 @@
       phone: form.phone.value.trim(),
       service_type: 'worker_request',
       message: JSON.stringify({
-        worker_type: form.workerType.value,
-        worker_type_label: form.workerType.options[form.workerType.selectedIndex].text,
+        worker_type: form.workerType.value.trim(),
+        worker_type_label: form.workerType.value.trim(),
         location: form.location.value.trim(),
         description: form.description.value.trim()
       })
