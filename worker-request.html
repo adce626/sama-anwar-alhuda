@@ -184,21 +184,41 @@
               <input type="text" id="wrFullName" name="full_name" required placeholder="أدخل اسمك الكامل">
             </div>
             <div class="form-group">
-              <label for="wrPhone"><i class="fas fa-phone"></i> رقم الهاتف</label>
+              <label for="wrPhone"><i class="fas fa-phone"></i> رقم الهاتف / الواتساب</label>
               <input type="tel" id="wrPhone" name="phone" required dir="ltr" placeholder="0782 586 5514">
             </div>
           </div>
           <div class="form-group">
-            <label for="wrWorkerType"><i class="fas fa-hard-hat"></i> نوع العامل المطلوب</label>
-            <input type="text" id="wrWorkerType" name="worker_type" required placeholder="مثال: كهربائي، سباك، نجار...">
+            <label for="wrWorkerType"><i class="fas fa-hard-hat"></i> نوع العمل المطلوب</label>
+            <input type="text" id="wrWorkerType" name="worker_type" required placeholder="مثال: كهربائي، سباك، نجار، دهّان...">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="wrWorkerCount"><i class="fas fa-users"></i> عدد العمال المطلوبين</label>
+              <input type="number" id="wrWorkerCount" name="worker_count" min="1" value="1" required>
+            </div>
+            <div class="form-group">
+              <label for="wrSalary"><i class="fas fa-money-bill"></i> الراتب المعروض</label>
+              <input type="text" id="wrSalary" name="salary" placeholder="مثال: 50,000 دينار يومياً">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="wrWorkTime"><i class="fas fa-clock"></i> وقت العمل</label>
+              <input type="text" id="wrWorkTime" name="work_time" required placeholder="مثال: 8 صباحاً - 5 مساءً">
+            </div>
+            <div class="form-group">
+              <label for="wrLocation"><i class="fas fa-map-marker-alt"></i> موقع العمل (المنطقة)</label>
+              <input type="text" id="wrLocation" name="location" required placeholder="المنطقة أو العنوان بالتفصيل">
+            </div>
           </div>
           <div class="form-group">
-            <label for="wrLocation"><i class="fas fa-map-marker-alt"></i> الموقع</label>
-            <input type="text" id="wrLocation" name="location" required placeholder="المنطقة أو العنوان بالتفصيل">
+            <label for="wrStartDate"><i class="fas fa-calendar"></i> تاريخ بداية العمل <span style="color:var(--text-muted);font-weight:400">(اختياري)</span></label>
+            <input type="date" id="wrStartDate" name="start_date">
           </div>
           <div class="form-group">
-            <label for="wrDescription"><i class="fas fa-comment"></i> وصف العمل المطلوب</label>
-            <textarea id="wrDescription" name="description" rows="4" required placeholder="اكتب تفاصيل العمل المطلوب من العامل..."></textarea>
+            <label for="wrDescription"><i class="fas fa-comment"></i> ملاحظات إضافية <span style="color:var(--text-muted);font-weight:400">(اختياري)</span></label>
+            <textarea id="wrDescription" name="description" rows="3" placeholder="أي تفاصيل إضافية عن العمل المطلوب..."></textarea>
           </div>
           <button type="submit" class="btn btn-red btn-lg" style="width:100%" id="wrSubmitBtn">
             <i class="fas fa-paper-plane"></i> إرسال الطلب

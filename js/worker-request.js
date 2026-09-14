@@ -22,7 +22,11 @@
     var fullName = document.getElementById('wrFullName').value.trim();
     var phone = document.getElementById('wrPhone').value.trim();
     var workerType = document.getElementById('wrWorkerType').value.trim();
+    var workerCount = document.getElementById('wrWorkerCount').value || '1';
+    var salary = document.getElementById('wrSalary').value.trim();
+    var workTime = document.getElementById('wrWorkTime').value.trim();
     var location = document.getElementById('wrLocation').value.trim();
+    var startDate = document.getElementById('wrStartDate').value;
     var description = document.getElementById('wrDescription').value.trim();
 
     var formData = {
@@ -32,7 +36,11 @@
       message: JSON.stringify({
         worker_type: workerType,
         worker_type_label: workerType,
+        worker_count: workerCount,
+        salary: salary,
+        work_time: workTime,
         location: location,
+        start_date: startDate || null,
         description: description
       })
     };
