@@ -42,6 +42,18 @@
       "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
     },
     {
+      "name": "الوظائف",
+      "short_name": "الوظائف",
+      "url": "/jobs.html",
+      "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
+    },
+    {
+      "name": "طلب عامل",
+      "short_name": "طلب عامل",
+      "url": "/worker-request.html",
+      "icons": [{"src": "assets/logo/logo-192.png", "sizes": "192x192"}]
+    },
+    {
       "name": "التنظيف",
       "short_name": "التنظيف",
       "url": "/cleaning.html",

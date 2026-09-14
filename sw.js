@@ -2,7 +2,7 @@
    سما انوار الهدى | Service Worker — PWA v2
    ============================================================ */
 
-const CACHE_NAME = 'sama-v5';
+const CACHE_NAME = 'sama-v6';
 
 const urlsToCache = [
   '/',
@@ -14,14 +14,22 @@ const urlsToCache = [
   '/transport.html',
   '/delivery.html',
   '/workforce.html',
+  '/advertising.html',
+  '/jobs.html',
+  '/job-detail.html',
+  '/worker-request.html',
   '/404.html',
   '/css/style.css',
   '/js/config.js',
   '/js/translations.js',
   '/js/components.js',
   '/js/main.js',
+  '/js/jobs.js',
+  '/js/job-detail.js',
+  '/js/worker-request.js',
   '/js/pwa.js',
   '/assets/logo/logo.jpg',
+  '/assets/logo/logo-192.png',
   '/manifest.json'
 ];
 
