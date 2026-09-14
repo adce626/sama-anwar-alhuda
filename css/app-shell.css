@@ -1,0 +1,913 @@
+/* ============================================================
+   سما انوار الهدى | App Shell — Design Tokens + Mobile-App Feel
+   Phase 1: jobs.html + worker-request.html only
+   ============================================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --primary: #C21E2C;
+  --primary-dark: #8f1620;
+  --primary-light: #f5d5d8;
+  --secondary: #141414;
+  --background: #FFFFFF;
+  --surface: #F8F7F5;
+  --text-primary: #141414;
+  --text-secondary: #6b6b6b;
+  --text-muted: #999;
+  --border: #e5e2dc;
+  --success: #16a34a;
+  --warning: #d97706;
+  --error: #dc2626;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 100px;
+  --shadow-soft: 0 4px 16px rgba(20,20,20,0.08);
+  --shadow-card: 0 8px 24px rgba(20,20,20,0.12);
+  --shadow-elevated: 0 16px 48px rgba(20,20,20,0.18);
+
+  --app-bottom-nav-h: 68px;
+  --app-header-h: 60px;
+  --app-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+[data-theme="dark"] {
+  --primary: #C21E2C;
+  --primary-dark: #a51a26;
+  --primary-light: #3d1116;
+  --secondary: #f5f3f1;
+  --background: #141414;
+  --surface: #1c1c1a;
+  --text-primary: #f5f3f1;
+  --text-secondary: #aea9a0;
+  --text-muted: #666;
+  --border: rgba(245,243,241,0.12);
+  --shadow-soft: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-card: 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-elevated: 0 16px 48px rgba(0,0,0,0.6);
+}
+
+/* ---------- App Page Transition ---------- */
+@keyframes appFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+[data-app-shell] main {
+  animation: appFadeIn 0.25s ease both;
+}
+
+/* ---------- App Header ---------- */
+.app-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 950;
+  height: var(--app-header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+[data-theme="dark"] .app-header {
+  background: rgba(20,20,20,0.92);
+  border-bottom-color: rgba(245,243,241,0.08);
+}
+
+.app-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.app-header-logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.app-header-logo span {
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.app-header-logo small {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.04em;
+}
+
+.app-header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.app-header-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-header-action a,
+.app-header-action button {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.app-header-action a:hover,
+.app-header-action button:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ---------- Bottom Navigation ---------- */
+.app-bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 950;
+  height: var(--app-bottom-nav-h);
+  padding-bottom: var(--app-safe-bottom);
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  background: var(--background);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+[data-theme="dark"] .app-bottom-nav {
+  background: rgba(20,20,20,0.95);
+  border-top-color: rgba(245,243,241,0.08);
+}
+
+.bottom-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 8px 4px;
+  transition: color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+
+.bottom-nav-item i {
+  font-size: 1.2rem;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bottom-nav-item.active {
+  color: var(--primary);
+}
+
+.bottom-nav-item.active i {
+  transform: scale(1.15);
+}
+
+.bottom-nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  width: 24px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--primary);
+}
+
+.bottom-nav-item:active i {
+  transform: scale(0.88);
+}
+
+/* ---------- App Body Offset ---------- */
+[data-app-shell] main {
+  padding-top: var(--app-header-h);
+  padding-bottom: calc(var(--app-bottom-nav-h) + var(--app-safe-bottom) + 8px);
+}
+
+/* ---------- App Hero (simplified) ---------- */
+.app-hero {
+  background: linear-gradient(135deg, #0f0f12 0%, #1a1a1f 50%, #0f0f12 100%);
+  padding: 28px 0 24px;
+  margin-bottom: 0;
+}
+
+.app-hero .container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.app-hero .eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: #ffd4d4;
+}
+
+.app-hero h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.app-hero h1 .red {
+  color: var(--primary);
+}
+
+.app-hero p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  margin-top: 2px;
+}
+
+.app-hero .hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.app-hero .hero-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* ---------- App Search Bar ---------- */
+.app-search-bar {
+  padding: 12px 16px;
+  background: var(--background);
+  position: sticky;
+  top: var(--app-header-h);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-search-bar .search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0 14px;
+  height: 44px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.app-search-bar .search-input-wrap:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(194,30,44,0.1);
+}
+
+.app-search-bar .search-input-wrap i {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.app-search-bar input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  width: 100%;
+}
+
+.app-search-bar input::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ---------- Filter Chips (horizontal scroll) ---------- */
+.app-chips {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: var(--background);
+}
+
+.app-chips::-webkit-scrollbar { display: none; }
+
+.app-chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+
+.app-chip i { font-size: 0.72rem; }
+
+.app-chip:active { transform: scale(0.95); }
+
+.app-chip.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ---------- App Job Card ---------- */
+.app-jobs-list {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-job-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: var(--shadow-soft);
+}
+
+.app-job-card:active {
+  transform: scale(0.985);
+}
+
+.app-job-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.app-job-card-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.app-job-badge {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.app-job-badge.open {
+  background: rgba(22,163,74,0.12);
+  color: var(--success);
+}
+
+.app-job-badge.closed {
+  background: rgba(220,38,38,0.1);
+  color: var(--error);
+}
+
+.app-job-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.app-job-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.app-job-card-meta i {
+  font-size: 0.72rem;
+  color: var(--primary);
+}
+
+.app-job-card-meta .salary {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.app-job-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.app-job-card-footer .details-link {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.app-job-card-footer .details-link i {
+  font-size: 0.7rem;
+  transition: transform 0.15s ease;
+}
+
+[dir="rtl"] .app-job-card-footer .details-link i {
+  transform: scaleX(-1);
+}
+
+.app-job-card:active .details-link i {
+  transform: translateX(4px);
+}
+
+/* ---------- App Form Styles ---------- */
+.app-form-section {
+  padding: 20px 16px;
+}
+
+.app-form-section .section-intro {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.app-form-section .section-intro .eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.app-form-section .section-intro h2 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-top: 6px;
+}
+
+.app-form-section .section-intro p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.app-form {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.app-form .form-group {
+  margin-bottom: 16px;
+}
+
+.app-form .form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.app-form .form-group label i {
+  color: var(--primary);
+  margin-inline-end: 6px;
+  width: 16px;
+  text-align: center;
+  font-size: 0.82rem;
+}
+
+.app-form .form-group label .optional {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.76rem;
+}
+
+.app-form .form-group input,
+.app-form .form-group select,
+.app-form .form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  -webkit-appearance: none;
+}
+
+.app-form .form-group input:focus,
+.app-form .form-group select:focus,
+.app-form .form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(194,30,44,0.1);
+}
+
+.app-form .form-group input::placeholder,
+.app-form .form-group textarea::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.app-form .form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.app-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 414px) {
+  .app-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- App Pill Button ---------- */
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+}
+
+.app-btn:active { transform: scale(0.97); }
+
+.app-btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(194,30,44,0.35);
+}
+
+.app-btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 6px 20px rgba(194,30,44,0.45);
+}
+
+.app-btn-primary:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.app-btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.app-btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.app-btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+}
+
+.app-btn-whatsapp:active { transform: scale(0.97); }
+
+.app-btn-block { width: 100%; }
+
+.app-btn-sm {
+  padding: 10px 20px;
+  font-size: 0.85rem;
+}
+
+/* ---------- App Alert Messages ---------- */
+.app-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 14px;
+}
+
+.app-alert.success {
+  background: rgba(22,163,74,0.1);
+  color: var(--success);
+  border: 1px solid rgba(22,163,74,0.2);
+}
+
+.app-alert.error {
+  background: rgba(220,38,38,0.08);
+  color: var(--error);
+  border: 1px solid rgba(220,38,38,0.15);
+}
+
+/* ---------- App How It Works ---------- */
+.app-steps {
+  padding: 24px 16px;
+}
+
+.app-steps .section-intro {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.app-steps .section-intro .eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+}
+
+.app-steps .section-intro h2 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-top: 6px;
+}
+
+.app-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.app-step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  box-shadow: var(--shadow-soft);
+}
+
+.app-step-number {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.app-step-card h3 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.app-step-card p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ---------- App CTA Band ---------- */
+.app-cta-band {
+  background: var(--primary);
+  padding: 28px 16px;
+  text-align: center;
+}
+
+.app-cta-band h2 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.app-cta-band p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  margin: 6px 0 16px;
+  line-height: 1.5;
+}
+
+.app-cta-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.app-cta-band .app-btn {
+  background: #fff;
+  color: var(--primary);
+}
+
+.app-cta-band .app-btn-whatsapp {
+  background: #fff;
+  color: #25D366;
+}
+
+.app-cta-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  margin-top: 12px;
+}
+
+.app-cta-note a {
+  color: #fff;
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+/* ---------- App Loading & Empty ---------- */
+.app-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 16px;
+}
+
+.app-loading i {
+  font-size: 1.8rem;
+  color: var(--primary);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.app-loading p {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.app-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 60px 16px;
+  text-align: center;
+}
+
+.app-empty i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  opacity: 0.4;
+}
+
+.app-empty h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.app-empty p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  max-width: 300px;
+}
+
+/* ---------- App Modal ---------- */
+.app-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  animation: modalOverlayIn 0.2s ease;
+}
+
+@keyframes modalOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.app-modal-content {
+  background: var(--background);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  width: 100%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px 16px calc(24px + var(--app-safe-bottom));
+  animation: modalSlideUp 0.25s ease;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.app-modal-handle {
+  width: 36px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--border);
+  margin: 0 auto 16px;
+}
+
+.app-modal-close {
+  position: absolute;
+  top: 16px;
+  inset-inline-end: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease;
+}
+
+.app-modal-close:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ---------- Utility ---------- */
+.app-divider {
+  height: 8px;
+  background: var(--surface);
+}
+
+@media (min-width: 640px) {
+  .app-bottom-nav {
+    max-width: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  }
+}

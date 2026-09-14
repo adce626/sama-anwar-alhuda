@@ -1,5 +1,5 @@
 /* ============================================================
-   سما انوار الهدى | Jobs Page - Fetch, Filter, Search, Apply
+   سما انوار الهدى | Jobs Page — App Shell Version
    ============================================================ */
 (function() {
   'use strict';
@@ -17,51 +17,24 @@
   var currentFilter = 'all';
   var currentSearch = '';
 
-  var deptLabels = {
-    ar: { cleaning: 'تنظيف', catering: 'تغذية', transport: 'نقل عام', delivery: 'توصيل سريع', workforce: 'تشغيل أيدي عاملة', advertising: 'إعلان وترويج', hospitality: 'خدمات فندقية' },
-    en: { cleaning: 'Cleaning', catering: 'Catering', transport: 'General Transport', delivery: 'Express Delivery', workforce: 'Workforce Staffing', advertising: 'Advertising & Promotion', hospitality: 'Hospitality Services' }
-  };
-
-  var typeLabels = {
-    ar: { full_time: 'دوام كامل', part_time: 'دوام جزئي', contract: 'عقد', temporary: 'مؤقت', permanent: 'دائم' },
-    en: { full_time: 'Full Time', part_time: 'Part Time', contract: 'Contract', temporary: 'Temporary', permanent: 'Permanent' }
-  };
-
-  function getLang() { return document.documentElement.lang === 'en' ? 'en' : 'ar'; }
-
-  function formatDate(dateStr) {
-    if (!dateStr) return '';
-    var d = new Date(dateStr);
-    return getLang() === 'ar'
-      ? d.toLocaleDateString('ar-IQ', { year: 'numeric', month: 'long', day: 'numeric' })
-      : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  }
-
   function renderJobCard(job) {
-    var lang = getLang();
     var isOpen = job.status === 'open';
-    var statusLabel = isOpen ? (lang === 'ar' ? 'متاحة' : 'Open') : (lang === 'ar' ? 'غير متاحة' : 'Closed');
-    var statusClass = isOpen ? 'status-open' : 'status-closed';
+    var badgeClass = isOpen ? 'open' : 'closed';
+    var badgeText = isOpen ? 'متاحة' : 'مغلقة';
     var detailUrl = 'job.html?id=' + job.id;
-    var salary = job.salary || '';
-    var location = job.location || '';
-    var type = job.employment_type || '';
+    var meta = '';
+    if (job.location) meta += '<span><i class="fas fa-map-marker-alt"></i> ' + job.location + '</span>';
+    if (job.employment_type) meta += '<span><i class="fas fa-clock"></i> ' + job.employment_type + '</span>';
+    if (job.salary) meta += '<span class="salary"><i class="fas fa-coins"></i> ' + job.salary + '</span>';
 
-    var metaHTML = '';
-    if (location) metaHTML += '<span><i class="fas fa-map-marker-alt"></i> ' + location + '</span>';
-    if (type) metaHTML += '<span><i class="fas fa-clock"></i> ' + type + '</span>';
-    if (salary) metaHTML += '<span class="job-salary"><i class="fas fa-coins"></i> ' + salary + '</span>';
-
-    return '<a href="' + detailUrl + '" class="job-card-link">' +
-      '<div class="job-card" data-dept="' + job.department + '">' +
-        '<div class="job-card-top">' +
-          '<h3 class="job-title">' + (job.title || '') + '</h3>' +
-          '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
-        '</div>' +
-        (metaHTML ? '<div class="job-meta">' + metaHTML + '</div>' : '') +
-        '<div class="job-card-footer">' +
-          '<span class="job-apply-hint">' + (lang === 'ar' ? 'تفاصيل' : 'Details') + ' <i class="fas fa-arrow-left"></i></span>' +
-        '</div>' +
+    return '<a href="' + detailUrl + '" class="app-job-card">' +
+      '<div class="app-job-card-top">' +
+        '<span class="app-job-card-title">' + (job.title || '') + '</span>' +
+        '<span class="app-job-badge ' + badgeClass + '">' + badgeText + '</span>' +
+      '</div>' +
+      (meta ? '<div class="app-job-card-meta">' + meta + '</div>' : '') +
+      '<div class="app-job-card-footer">' +
+        '<span class="details-link">تفاصيل <i class="fas fa-arrow-left"></i></span>' +
       '</div>' +
     '</a>';
   }
@@ -81,52 +54,20 @@
     }
     gridEl.innerHTML = filtered.map(renderJobCard).join('');
     emptyEl.style.display = filtered.length === 0 ? 'flex' : 'none';
-    gridEl.style.display = filtered.length > 0 ? 'grid' : 'none';
+    gridEl.style.display = filtered.length > 0 ? 'flex' : 'none';
   }
 
-  // Share buttons
-  document.addEventListener('click', function(e) {
-    var btn = e.target.closest('.job-share-btn');
-    if (btn) {
-      var id = btn.getAttribute('data-id');
-      var title = btn.getAttribute('data-title');
-      var url = window.location.origin + '/job.html?id=' + id;
-      var lang = getLang();
-      var text = lang === 'ar' ? 'شوف هذي الوظيفة: ' + title : 'Check this job: ' + title;
-      if (btn.classList.contains('share-wa')) {
-        window.open('https://wa.me/?text=' + encodeURIComponent(text + '\n' + url), '_blank');
-      } else {
-        var shareMenu = btn.nextElementSibling;
-        if (shareMenu && shareMenu.classList.contains('share-menu')) {
-          shareMenu.classList.toggle('show');
-        } else {
-          var menu = document.createElement('div');
-          menu.className = 'share-menu show';
-          menu.innerHTML = '<a href="https://wa.me/?text=' + encodeURIComponent(text + '\n' + url) + '" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>' +
-            '<a href="https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>' +
-            '<a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url) + '" target="_blank"><i class="fab fa-x-twitter"></i> X</a>';
-          btn.parentNode.appendChild(menu);
-        }
-      }
-    }
-    if (!e.target.closest('.job-share-btn') && !e.target.closest('.share-menu')) {
-      document.querySelectorAll('.share-menu.show').forEach(function(m) { m.classList.remove('show'); });
-    }
-  });
-
-  // Filter buttons
   if (filtersEl) {
     filtersEl.addEventListener('click', function(e) {
-      var btn = e.target.closest('.filter-btn');
+      var btn = e.target.closest('.app-chip');
       if (!btn) return;
-      filtersEl.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      filtersEl.querySelectorAll('.app-chip').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       currentFilter = btn.getAttribute('data-dept');
       filterJobs();
     });
   }
 
-  // Search
   if (searchEl) {
     searchEl.addEventListener('input', function() {
       currentSearch = this.value.trim();
@@ -134,7 +75,6 @@
     });
   }
 
-  // Apply modal
   function openApplyModal(jobId, jobTitle) {
     if (!applyModal) return;
     document.getElementById('applyJobId').value = jobId;
@@ -154,10 +94,8 @@
     if (e.target === applyModal) closeApplyModal();
   });
 
-  // File upload preview — front
   var fileUploadFront = document.getElementById('fileUploadFront');
   var fileInputFront = document.getElementById('applyIdImageFront');
-  var fileLabelFront = document.getElementById('fileUploadLabelFront');
   var filePreviewFront = document.getElementById('filePreviewFront');
 
   if (fileUploadFront && fileInputFront) {
@@ -168,17 +106,14 @@
         reader.onload = function(e) {
           filePreviewFront.src = e.target.result;
           filePreviewFront.style.display = 'block';
-          fileLabelFront.style.display = 'none';
         };
         reader.readAsDataURL(this.files[0]);
       }
     });
   }
 
-  // File upload preview — back
   var fileUploadBack = document.getElementById('fileUploadBack');
   var fileInputBack = document.getElementById('applyIdImageBack');
-  var fileLabelBack = document.getElementById('fileUploadLabelBack');
   var filePreviewBack = document.getElementById('filePreviewBack');
 
   if (fileUploadBack && fileInputBack) {
@@ -189,14 +124,12 @@
         reader.onload = function(e) {
           filePreviewBack.src = e.target.result;
           filePreviewBack.style.display = 'block';
-          fileLabelBack.style.display = 'none';
         };
         reader.readAsDataURL(this.files[0]);
       }
     });
   }
 
-  // Helper: upload file to storage
   async function uploadFile(file, bucket, supaUrl, supaKey) {
     var fileExt = file.name.split('.').pop();
     var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
@@ -213,12 +146,10 @@
       return supaUrl + '/storage/v1/object/public/' + bucket + '/' + fileName;
     } else {
       var err = await uploadRes.json();
-      console.error('[Apply] Upload failed:', err);
-      throw new Error('فشل رفع الصورة: ' + (err.message || 'خطأ غير معروف'));
+      throw new Error('فشل رفع الصورة: ' + (err.message || 'خطأ'));
     }
   }
 
-  // Submit application
   var applyForm = document.getElementById('applyForm');
   if (applyForm) {
     applyForm.addEventListener('submit', async function(e) {
@@ -228,7 +159,7 @@
       var errorEl = document.getElementById('applyError');
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (getLang() === 'ar' ? 'جارٍ الإرسال...' : 'Submitting...');
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جارٍ الإرسال...';
       successEl.style.display = 'none';
       errorEl.style.display = 'none';
 
@@ -237,22 +168,17 @@
         var key = SITE.supabase.anonKey;
         if (!url || !key || url === 'YOUR_SUPABASE_URL') throw new Error('Supabase not configured');
 
-        // رفع الصور
         var imageUrlFront = '';
         var imageUrlBack = '';
 
         var fiFront = document.getElementById('applyIdImageFront');
         if (fiFront && fiFront.files && fiFront.files[0]) {
-          console.log('[Apply] Uploading front ID...');
           imageUrlFront = await uploadFile(fiFront.files[0], 'id-documents', url, key);
-          console.log('[Apply] Front uploaded:', imageUrlFront);
         }
 
         var fiBack = document.getElementById('applyIdImageBack');
         if (fiBack && fiBack.files && fiBack.files[0]) {
-          console.log('[Apply] Uploading back ID...');
           imageUrlBack = await uploadFile(fiBack.files[0], 'id-documents', url, key);
-          console.log('[Apply] Back uploaded:', imageUrlBack);
         }
 
         var appData = {
@@ -266,7 +192,6 @@
           source: 'online'
         };
 
-        console.log('[Apply] Submitting:', appData);
         var res = await fetch(url + '/rest/v1/job_applications', {
           method: 'POST',
           headers: {
@@ -280,84 +205,26 @@
 
         if (!res.ok) {
           var resErr = await res.json();
-          console.error('[Apply] Submit failed:', resErr);
-          throw new Error('فشل إرسال الطلب: ' + (resErr.message || resErr.hint || 'خطأ بالقاعدة'));
+          throw new Error('فشل إرسال الطلب: ' + (resErr.message || resErr.hint || 'خطأ'));
         }
 
-        console.log('[Apply] Done!');
         successEl.style.display = 'flex';
         applyForm.reset();
-        filePreviewFront.style.display = 'none';
-        fileLabelFront.style.display = '';
-        filePreviewBack.style.display = 'none';
-        fileLabelBack.style.display = '';
+        if (filePreviewFront) { filePreviewFront.style.display = 'none'; }
+        if (filePreviewBack) { filePreviewBack.style.display = 'none'; }
       } catch (err) {
         console.error('[Apply] Error:', err);
         errorEl.querySelector('span').textContent = err.message || 'حدث خطأ أثناء الإرسال';
         errorEl.style.display = 'flex';
       } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span data-i18n="jobs.applySubmit"></span>';
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال التقديم';
       }
     });
   }
 
-  // Expose openApplyModal for job-detail.js
   window.openApplyModal = openApplyModal;
 
-  function injectSchema(jobs) {
-    var existing = document.getElementById('jobs-schema');
-    if (existing) existing.remove();
-    if (!jobs || jobs.length === 0) return;
-    var schema = {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "الوظائف المتاحة — سما انوار الهدى",
-      "numberOfItems": jobs.length,
-      "itemListElement": jobs.slice(0, 10).map(function(job, i) {
-        var entry = {
-          "@type": "ListItem",
-          "position": i + 1,
-          "item": {
-            "@type": "JobPosting",
-            "title": job.title || "",
-            "description": job.description || job.title || "",
-            "datePosted": job.created_at ? job.created_at.split('T')[0] : new Date().toISOString().split('T')[0],
-            "hiringOrganization": {
-              "@type": "Organization",
-              "name": "سما انوار الهدى"
-            },
-            "jobLocation": {
-              "@type": "Place",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": job.location || "كربلاء",
-                "addressCountry": "IQ"
-              }
-            },
-            "employmentType": job.employment_type || "FULL_TIME",
-            "jobPostingType": "EMPLOYMENT_TYPE"
-          }
-        };
-        if (job.status === 'closed') entry.item.validThrough = new Date().toISOString().split('T')[0];
-        if (job.salary) {
-          entry.item.baseSalary = {
-            "@type": "MonetaryAmount",
-            "currency": "IQD",
-            "value": job.salary
-          };
-        }
-        return entry;
-      })
-    };
-    var script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'jobs-schema';
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
-  }
-
-  // Fetch jobs
   async function fetchJobs() {
     try {
       var url = SITE.supabase.url;
@@ -368,40 +235,24 @@
         headers: { 'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' }
       });
 
-      console.log('[Jobs] Response status:', response.status);
-
-      if (!response.ok) {
-        var errText = await response.text();
-        console.error('[Jobs] Error:', errText);
-        throw new Error('Fetch failed: ' + response.status);
-      }
+      if (!response.ok) throw new Error('Fetch failed: ' + response.status);
 
       allJobs = await response.json();
-      console.log('[Jobs] Found:', allJobs.length);
-      loadingEl.style.display = 'none';
-
-      injectSchema(allJobs);
+      if (loadingEl) loadingEl.style.display = 'none';
 
       if (!allJobs || allJobs.length === 0) {
-        emptyEl.style.display = 'flex';
+        if (emptyEl) emptyEl.style.display = 'flex';
         return;
       }
 
       gridEl.innerHTML = allJobs.map(renderJobCard).join('');
-      gridEl.style.display = 'grid';
-
+      gridEl.style.display = 'flex';
     } catch (err) {
       console.error('Jobs fetch error:', err);
-      loadingEl.style.display = 'none';
-      emptyEl.style.display = 'flex';
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (emptyEl) emptyEl.style.display = 'flex';
     }
   }
 
-  fetchJobs().then(function() {
-    var applyParam = new URLSearchParams(window.location.search).get('apply');
-    if (applyParam && typeof window.openApplyModal === 'function') {
-      var job = allJobs.find(function(j) { return j.id === applyParam; });
-      if (job) window.openApplyModal(job.id, job.title);
-    }
-  });
+  fetchJobs();
 })();
