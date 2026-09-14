@@ -19,15 +19,21 @@
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
 
+    var fullName = document.getElementById('wrFullName').value.trim();
+    var phone = document.getElementById('wrPhone').value.trim();
+    var workerType = document.getElementById('wrWorkerType').value.trim();
+    var location = document.getElementById('wrLocation').value.trim();
+    var description = document.getElementById('wrDescription').value.trim();
+
     var formData = {
-      full_name: form.fullName.value.trim(),
-      phone: form.phone.value.trim(),
+      full_name: fullName,
+      phone: phone,
       service_type: 'worker_request',
       message: JSON.stringify({
-        worker_type: form.workerType.value.trim(),
-        worker_type_label: form.workerType.value.trim(),
-        location: form.location.value.trim(),
-        description: form.description.value.trim()
+        worker_type: workerType,
+        worker_type_label: workerType,
+        location: location,
+        description: description
       })
     };
 
@@ -50,7 +56,10 @@
         body: JSON.stringify(formData)
       });
 
-      if (!response.ok) throw new Error('Submit failed');
+      if (!response.ok) {
+        var errText = await response.text();
+        throw new Error('Submit failed: ' + errText);
+      }
 
       successMsg.style.display = 'flex';
       form.reset();
