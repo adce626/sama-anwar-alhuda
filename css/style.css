@@ -8,6 +8,7 @@
 :root {
   --color-ink: #111111;
   --color-bg: #ffffff;
+  --bg: #ffffff;
   --color-neutral: #f5f3f1;
   --color-red: #c21e2c;
   --color-red-deep: #8f1620;
@@ -38,6 +39,7 @@
 [data-theme="dark"] {
   --color-ink: #f5f3f1;
   --color-bg: #141414;
+  --bg: #141414;
   --color-neutral: #1d1d1b;
   --color-red: #c21e2c;
   --color-red-deep: #a51a26;

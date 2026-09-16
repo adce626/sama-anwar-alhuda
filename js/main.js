@@ -62,6 +62,7 @@ function trackFormConversion(formType) {
 
 /* ---------- Theme ---------- */
 function applyTheme() {
+  document.documentElement.dataset.theme = state.theme;
   document.body.dataset.theme = state.theme;
   try { localStorage.setItem('sah-theme', state.theme); } catch (e) {}
   var icon = $('#themeToggle i');
