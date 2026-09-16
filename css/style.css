@@ -598,12 +598,6 @@ body[data-page="index"] .navbar:not(.scrolled) .hamburger span { background: #f5
 }
 
 /* ---------- Performance Optimizations ---------- */
-/* Improve LCP - Content Visibility */
-.hero, .page-hero, .section, .footer {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
-}
-
 /* Improve CLS - Image aspect ratios */
 img, video, svg {
   max-width: 100%;
