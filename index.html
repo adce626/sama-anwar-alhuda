@@ -368,7 +368,12 @@
 
   <script src="https://browser.sentry-cdn.com/8.55.0/bundle.min.js" crossorigin="anonymous"></script>
   <script>
-    Sentry.init({ dsn: "https://e4a844beff9687808138453b1826c8d7@o4512089984598016.ingest.de.sentry.io/4512089999671376" });
+    if (typeof Sentry !== 'undefined') {
+      Sentry.init({ dsn: "https://e4a844beff9687808138453b1826c8d7@o4512089984598016.ingest.de.sentry.io/4512089999671376" });
+      console.log('[Sentry] Initialized successfully');
+    } else {
+      console.error('[Sentry] Failed to load');
+    }
   </script>
   <script src="js/config.js?v=3"></script>
   <script src="js/translations.js?v=3"></script>
