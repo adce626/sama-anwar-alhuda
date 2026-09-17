@@ -2,7 +2,7 @@
    سما انوار الهدى | Service Worker — PWA v2
    ============================================================ */
 
-const CACHE_NAME = 'sama-v6';
+const CACHE_NAME = 'sama-v7';
 
 const urlsToCache = [
   '/',
@@ -16,7 +16,7 @@ const urlsToCache = [
   '/workforce.html',
   '/advertising.html',
   '/jobs.html',
-  '/job-detail.html',
+  '/job.html',
   '/worker-request.html',
   '/404.html',
   '/css/style.css',
@@ -45,9 +45,14 @@ const excludedUrls = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+      .then(cache => {
+        return Promise.allSettled(
+          urlsToCache.map(url => cache.add(url).catch(err => {
+            console.warn('[SW] Failed to cache:', url, err);
+          }))
+        );
+      })
       .then(() => self.skipWaiting())
-      .catch(err => console.error('[SW] Cache failed:', err))
   );
 });
 

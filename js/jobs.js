@@ -13,6 +13,13 @@
 
   if (!gridEl) return;
 
+  function escapeHTML(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
   var allJobs = [];
   var currentFilter = 'all';
   var currentSearch = '';
@@ -48,14 +55,14 @@
     var type = job.employment_type || '';
 
     var metaHTML = '';
-    if (location) metaHTML += '<span><i class="fas fa-map-marker-alt"></i> ' + location + '</span>';
-    if (type) metaHTML += '<span><i class="fas fa-clock"></i> ' + type + '</span>';
-    if (salary) metaHTML += '<span class="job-salary"><i class="fas fa-coins"></i> ' + salary + '</span>';
+    if (location) metaHTML += '<span><i class="fas fa-map-marker-alt"></i> ' + escapeHTML(location) + '</span>';
+    if (type) metaHTML += '<span><i class="fas fa-clock"></i> ' + escapeHTML(type) + '</span>';
+    if (salary) metaHTML += '<span class="job-salary"><i class="fas fa-coins"></i> ' + escapeHTML(salary) + '</span>';
 
     return '<a href="' + detailUrl + '" class="job-card-link">' +
-      '<div class="job-card" data-dept="' + job.department + '">' +
+      '<div class="job-card" data-dept="' + escapeHTML(job.department) + '">' +
         '<div class="job-card-top">' +
-          '<h3 class="job-title">' + (job.title || '') + '</h3>' +
+          '<h3 class="job-title">' + escapeHTML(job.title || '') + '</h3>' +
           '<span class="job-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
         '</div>' +
         (metaHTML ? '<div class="job-meta">' + metaHTML + '</div>' : '') +
@@ -197,9 +204,20 @@
   }
 
   // Helper: upload file to storage
+  var MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+  var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
   async function uploadFile(file, bucket, supaUrl, supaKey) {
-    var fileExt = file.name.split('.').pop();
-    var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
+    if (file.size > MAX_FILE_SIZE) {
+      throw new Error(getLang() === 'ar' ? 'حجم الصورة يتجاوز 5 ميجابايت' : 'Image size exceeds 5MB');
+    }
+    if (ALLOWED_TYPES.indexOf(file.type) === -1) {
+      throw new Error(getLang() === 'ar' ? 'نوع الملف غير مدعوم. استخدم JPG أو PNG أو WebP' : 'File type not supported. Use JPG, PNG, or WebP');
+    }
+    var fileExt = file.name.split('.').pop().toLowerCase();
+    if (['jpg', 'jpeg', 'png', 'webp', 'gif'].indexOf(fileExt) === -1) {
+      throw new Error(getLang() === 'ar' ? 'امتداد الملف غير مدعوم' : 'File extension not supported');
+    }    var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
     var formData = new FormData();
     formData.append('file', file);
 
@@ -243,16 +261,12 @@
 
         var fiFront = document.getElementById('applyIdImageFront');
         if (fiFront && fiFront.files && fiFront.files[0]) {
-          console.log('[Apply] Uploading front ID...');
           imageUrlFront = await uploadFile(fiFront.files[0], 'id-documents', url, key);
-          console.log('[Apply] Front uploaded:', imageUrlFront);
         }
 
         var fiBack = document.getElementById('applyIdImageBack');
         if (fiBack && fiBack.files && fiBack.files[0]) {
-          console.log('[Apply] Uploading back ID...');
           imageUrlBack = await uploadFile(fiBack.files[0], 'id-documents', url, key);
-          console.log('[Apply] Back uploaded:', imageUrlBack);
         }
 
         var appData = {
@@ -266,7 +280,6 @@
           source: 'online'
         };
 
-        console.log('[Apply] Submitting:', appData);
         var res = await fetch(url + '/rest/v1/job_applications', {
           method: 'POST',
           headers: {
@@ -281,10 +294,9 @@
         if (!res.ok) {
           var resErr = await res.json();
           console.error('[Apply] Submit failed:', resErr);
-          throw new Error('فشل إرسال الطلب: ' + (resErr.message || resErr.hint || 'خطأ بالقاعدة'));
+          throw new Error(getLang() === 'ar' ? 'فشل إرسال الطلب. حاول مرة أخرى.' : 'Submission failed. Please try again.');
         }
 
-        console.log('[Apply] Done!');
         successEl.style.display = 'flex';
         applyForm.reset();
         filePreviewFront.style.display = 'none';
@@ -368,8 +380,6 @@
         headers: { 'apikey': key, 'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json' }
       });
 
-      console.log('[Jobs] Response status:', response.status);
-
       if (!response.ok) {
         var errText = await response.text();
         console.error('[Jobs] Error:', errText);
@@ -377,7 +387,6 @@
       }
 
       allJobs = await response.json();
-      console.log('[Jobs] Found:', allJobs.length);
       loadingEl.style.display = 'none';
 
       injectSchema(allJobs);

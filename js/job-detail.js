@@ -16,6 +16,13 @@
 
   if (!contentEl) return;
 
+  function escapeHTML(str) {
+    if (!str) return '';
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
   var params = new URLSearchParams(window.location.search);
   var jobId = params.get('id');
 
@@ -75,7 +82,7 @@
       var requirements = job.requirements || '';
       var description = job.description || '';
 
-      document.title = (job.title || 'الوظيفة') + ' — سما انوار الهدى';
+      document.title = escapeHTML(job.title || 'الوظيفة') + ' — سما انوار الهدى';
 
       // Inject Schema.org
       var existingSchema = document.getElementById('job-schema');
@@ -115,10 +122,10 @@
       titleEl.textContent = job.title || '';
 
       metaEl.innerHTML =
-        '<span class="job-status-badge ' + statusClass + '"><span class="status-dot"></span>' + statusLabel + '</span>' +
-        '<span class="job-meta-item"><i class="fas fa-map-marker-alt"></i> ' + (job.location || '') + '</span>' +
-        (type ? '<span class="job-meta-item"><i class="fas fa-clock"></i> ' + type + '</span>' : '') +
-        (salary ? '<span class="job-meta-item job-meta-salary"><i class="fas fa-coins"></i> ' + salary + '</span>' : '') +
+        '<span class="job-status-badge ' + statusClass + '"><span class="status-dot"></span>' + escapeHTML(statusLabel) + '</span>' +
+        '<span class="job-meta-item"><i class="fas fa-map-marker-alt"></i> ' + escapeHTML(job.location || '') + '</span>' +
+        (type ? '<span class="job-meta-item"><i class="fas fa-clock"></i> ' + escapeHTML(type) + '</span>' : '') +
+        (salary ? '<span class="job-meta-item job-meta-salary"><i class="fas fa-coins"></i> ' + escapeHTML(salary) + '</span>' : '') +
         '<span class="job-meta-item"><i class="far fa-calendar"></i> ' + formatDate(job.created_at) + '</span>';
 
       var applySection = document.querySelector('.job-apply-section');
@@ -131,14 +138,14 @@
       if (description) {
         bodyHTML += '<div class="job-detail-section">' +
           '<div class="job-detail-section-header"><i class="fas fa-align-right"></i><h3>' + (lang === 'ar' ? 'وصف الوظيفة' : 'Job Description') + '</h3></div>' +
-          '<div class="job-detail-section-body"><p>' + description + '</p></div>' +
+          '<div class="job-detail-section-body"><p>' + escapeHTML(description) + '</p></div>' +
         '</div>';
       }
 
       if (requirements) {
         bodyHTML += '<div class="job-detail-section">' +
           '<div class="job-detail-section-header"><i class="fas fa-clipboard-check"></i><h3>' + (lang === 'ar' ? 'المتطلبات' : 'Requirements') + '</h3></div>' +
-          '<div class="job-detail-section-body"><p>' + requirements + '</p></div>' +
+          '<div class="job-detail-section-body"><p>' + escapeHTML(requirements) + '</p></div>' +
         '</div>';
       }
 
@@ -227,8 +234,20 @@
       }
 
       // Helper: upload file
+      var MAX_FILE_SIZE = 5 * 1024 * 1024;
+      var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
       async function uploadFile(file, bucket, supaUrl, supaKey) {
-        var fileExt = file.name.split('.').pop();
+        if (file.size > MAX_FILE_SIZE) {
+          throw new Error(getLang() === 'ar' ? 'حجم الصورة يتجاوز 5 ميجابايت' : 'Image size exceeds 5MB');
+        }
+        if (ALLOWED_TYPES.indexOf(file.type) === -1) {
+          throw new Error(getLang() === 'ar' ? 'نوع الملف غير مدعوم. استخدم JPG أو PNG أو WebP' : 'File type not supported. Use JPG, PNG, or WebP');
+        }
+        var fileExt = file.name.split('.').pop().toLowerCase();
+        if (['jpg', 'jpeg', 'png', 'webp', 'gif'].indexOf(fileExt) === -1) {
+          throw new Error(getLang() === 'ar' ? 'امتداد الملف غير مدعوم' : 'File extension not supported');
+        }
         var fileName = Date.now() + '_' + Math.random().toString(36).substring(7) + '.' + fileExt;
         var formData = new FormData();
         formData.append('file', file);
@@ -270,15 +289,11 @@
             var imageUrlBack = '';
 
             if (fileInputFront.files && fileInputFront.files[0]) {
-              console.log('[Apply] Uploading front ID...');
               imageUrlFront = await uploadFile(fileInputFront.files[0], 'id-documents', supaUrl, supaKey);
-              console.log('[Apply] Front uploaded:', imageUrlFront);
             }
 
             if (fileInputBack.files && fileInputBack.files[0]) {
-              console.log('[Apply] Uploading back ID...');
               imageUrlBack = await uploadFile(fileInputBack.files[0], 'id-documents', supaUrl, supaKey);
-              console.log('[Apply] Back uploaded:', imageUrlBack);
             }
 
             var appData = {
@@ -292,7 +307,6 @@
               source: 'online'
             };
 
-            console.log('[Apply] Submitting:', appData);
             var res = await fetch(supaUrl + '/rest/v1/job_applications', {
               method: 'POST',
               headers: {
@@ -307,10 +321,9 @@
             if (!res.ok) {
               var resErr = await res.json();
               console.error('[Apply] Submit failed:', resErr);
-              throw new Error('فشل إرسال الطلب: ' + (resErr.message || resErr.hint || 'خطأ بالقاعدة'));
+              throw new Error(getLang() === 'ar' ? 'فشل إرسال الطلب. حاول مرة أخرى.' : 'Submission failed. Please try again.');
             }
 
-            console.log('[Apply] Done!');
             successEl.style.display = 'flex';
             applyForm.reset();
             filePreviewFront.style.display = 'none';
