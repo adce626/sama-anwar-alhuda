@@ -41,6 +41,6 @@ var SITE = {
   },
   web3forms: {
     enabled: true,
-    accessKey: 'YOUR_WEB3FORMS_ACCESS_KEY' // Get free key from https://web3forms.com
+    accessKey: '2902af17-5d14-431a-af86-d86dd8c6dfc2' // Web3Forms access key
   }
 };
