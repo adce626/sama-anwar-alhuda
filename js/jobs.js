@@ -286,7 +286,8 @@
             'Content-Type': 'application/json',
             'apikey': key,
             'Authorization': 'Bearer ' + key,
-            'Prefer': 'return=minimal'
+            'Prefer': 'return=minimal',
+            'X-Requested-With': 'XMLHttpRequest'
           },
           body: JSON.stringify(appData)
         });

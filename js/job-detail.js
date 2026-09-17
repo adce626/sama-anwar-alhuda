@@ -313,7 +313,8 @@
                 'Content-Type': 'application/json',
                 'apikey': supaKey,
                 'Authorization': 'Bearer ' + supaKey,
-                'Prefer': 'return=minimal'
+                'Prefer': 'return=minimal',
+                'X-Requested-With': 'XMLHttpRequest'
               },
               body: JSON.stringify(appData)
             });

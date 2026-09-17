@@ -33,11 +33,9 @@ function trackEvent(eventName, params) {
 /* ---------- Conversion Tracking ---------- */
 function trackConversion(conversionType, value) {
   if (typeof gtag === 'function') {
-    gtag('event', 'conversion', {
-      'send_to': 'G-K21VVC9407/CONVERSION_ID',
+    gtag('event', conversionType, {
       'value': value || 1,
-      'currency': 'IQD',
-      'transaction_id': ''
+      'currency': 'IQD'
     });
   }
 }

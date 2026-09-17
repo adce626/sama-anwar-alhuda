@@ -39,7 +39,8 @@
           'Content-Type': 'application/json',
           'apikey': anonKey,
           'Authorization': `Bearer ${anonKey}`,
-          'Prefer': 'return=minimal'
+          'Prefer': 'return=minimal',
+          'X-Requested-With': 'XMLHttpRequest'
         },
         body: JSON.stringify(formData)
       });
