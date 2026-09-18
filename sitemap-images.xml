@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Logo -->
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/</loc>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/og-image.png</image:loc>
+      <image:title>شركة سما انوار الهدى للخدمات العامة في كربلاء العراق</image:title>
+      <image:caption>شعار شركة سما انوار الهدى للتنظيف والتغذية والنقل في كربلاء</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Cleaning Service Images -->
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/cleaning.html</loc>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/photo_7_2026-09-03_23-43-10.jpg</image:loc>
+      <image:title>فريق تنظيف احترافي في كربلاء - شركة سما انوار الهدى</image:title>
+      <image:caption>فريق تنظيف منازل ومكاتب في كربلاء يعمل بأحدث المعدات</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/photo_27_2026-09-03_23-43-10.jpg</image:loc>
+      <image:title>نتائج تنظيف احترافي في كربلاء - شركة سما انوار الهدى</image:title>
+      <image:caption>منزل نظيف في كربلاء بعد خدمات التنظيف الشاملة</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/photo_22_2026-09-03_23-43-10.jpg</image:loc>
+      <image:title>تنظيف مكاتب في كربلاء - شركة سما انوار الهدى</image:title>
+      <image:caption>تنظيف وتنظيم المكاتب والمحلات التجارية في كربلاء</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Catering Service Images -->
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/catering.html</loc>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/Screenshot%202026-09-04%20003455.png</image:loc>
+      <image:title>وجبات شركات في كربلاء - خدمة التغذية شركة سما انوار الهدى</image:title>
+      <image:caption>تقديم وجبات يومية للشركات والمؤسسات في كربلاء</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/Screenshot%202026-09-04%20003504.png</image:loc>
+      <image:title>مناسبات في كربلاء - خدمة تقديم الطعام شركة سما انوار الهدى</image:title>
+      <image:caption>خدمات تموين للاحتفالات والمناسبات في كربلاء</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Workforce Service Images -->
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/workforce.html</loc>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/photo_39_2026-09-03_23-43-10.jpg</image:loc>
+      <image:title>تشغيل الأيدي العاملة في كربلاء - شركة سما انوار الهدى</image:title>
+      <image:caption>توفير عمالة مدربة وماهرة للشركات والمشاريع في كربلاء</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/112f6c0c284d44c6a2c4ff58fdfc4b68.jpg</image:loc>
+      <image:title>فرص عمل في كربلاء - شركة سما انوار الهدى</image:title>
+      <image:caption>وظائف متاحة في مجال الخدمات العامة في مدينة كربلاء</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Partner Logos -->
+  <url>
+    <loc>https://sama-anwar-alhuda.vercel.app/</loc>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/zain-logo.jpg</image:loc>
+      <image:title>شريك زين العراق - شركة سما انوار الهدى كربلاء</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/images.jpg</image:loc>
+      <image:title>شريك دائرة صحة كربلاء - شركة سما انوار الهدى</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/images%20(1).jpg</image:loc>
+      <image:title>شريك مستشفى الإمام الحسن المجتبى كربلاء - شركة سما انوار الهدى</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sama-anwar-alhuda.vercel.app/assets/images/674270140_122100880724732726_7279384173595269326_n.jpg</image:loc>
+      <image:title>شريك عقارات مجمع الغدير - شركة سما انوار الهدى كربلاء</image:title>
+    </image:image>
+  </url>
+
+</urlset>

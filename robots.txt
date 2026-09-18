@@ -1,12 +1,9 @@
 User-agent: *
 Allow: /
-Disallow: /assets/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.php$
 Disallow: /*.json$
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
 Sitemap: https://sama-anwar-alhuda.vercel.app/sitemap.xml
+Sitemap: https://sama-anwar-alhuda.vercel.app/sitemap-images.xml
